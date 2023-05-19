@@ -1,21 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
-html {
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
 *, *:before, *:after {
-    box-sizing: inherit;
-}
-
-body, h1, h2, h3, h4, h5, h6, p, ol, ul {
-    margin: 0;
+    box-sizing: border-box;
     padding: 0;
-    font-weight: normal;
+    margin: 0;
+    list-style-type: none;
+    text-decoration: none;
+    transition: .5s;
+    font-family: "Roboto",sans-serif;
+    font-weight: 500;
+    color: #414141;
 }
 
-ol, ul {
-    list-style: none;
+.container{
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.btn,a{
+    cursor: pointer;
+}
+
+.btn:hover{
+    transform: scale(1.05);
+}
+
+.btn:active{
+    transform: scale(.95);
 }
