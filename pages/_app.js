@@ -1,12 +1,16 @@
 import '@/styles/globals.css'
+import { ChakraProvider } from '@chakra-ui/react'
 import Layout from "@/components/Layout/Layout";
+import '../styles/Swiper.scss'
+
 
 export default function App({Component, pageProps}) {
     return (
-
-        <Layout>
-            <Component {...pageProps} />
-        </Layout>
+        <ChakraProvider>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </ChakraProvider>
     )
 
 
