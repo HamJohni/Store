@@ -20,14 +20,16 @@
     padding: 0 10px;
 }
 
-.btn,a{
+button,a{
     cursor: pointer;
 }
 
-.btn:hover{
+button:hover{
     transform: scale(1.05);
 }
 
-.btn:active{
+button:active{
     transform: scale(.95);
 }
+
+
