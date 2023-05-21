@@ -1,5 +1,4 @@
 import h from './CardH.module.scss'
-
 import {BiSearch} from "react-icons/bi";
 import {HiOutlinePhone} from "react-icons/hi";
 import {TbTruckDelivery} from "react-icons/tb";

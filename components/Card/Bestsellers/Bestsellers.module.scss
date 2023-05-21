@@ -1,0 +1,14 @@
+.best{
+  margin-bottom: 70px;
+
+  &__subtitle{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  &__list{
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

@@ -60,6 +60,8 @@ const Info = () => {
                         </SwiperSlide>
 
                     </Swiper>
+                </div>
+                <div className={i.info__left_bottom}>
                     <Swiper
                         onSwiper={setThumbsSwiper}
                         spaceBetween={10}
@@ -91,6 +93,7 @@ const Info = () => {
                     </Swiper>
                 </div>
             </div>
+
 
             <div className={i.info__right}>
                 <Rating style={{maxWidth: 100}} value={rating} onChange={setRating} itemStyles={myStyles}/>
