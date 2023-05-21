@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './ProductCard.module.scss'
-import divan from '../../public/divan.png'
 import Image from 'next/image';
 import Heart from '../Heart/Heart';
 
