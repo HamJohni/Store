@@ -7,7 +7,7 @@ import { mainSliders } from '@/contants/MainSliders';
 
 const Main = () => {
 	return (
-		<section className={s.main_section}>
+		<section className='container'>
 			<div className={s.main_section__block}>
 				<div className={s.main_section__block__slide_block}>
 					<MainSlider mainSliders={mainSliders}/>
