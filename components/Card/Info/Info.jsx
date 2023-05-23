@@ -16,6 +16,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 
+
 const Info = () => {
     const [rating, setRating] = useState(4)
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -38,7 +39,7 @@ const Info = () => {
                         spaceBetween={10}
                         thumbs={{swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null}}
                         modules={[FreeMode, Navigation, Thumbs]}
-                        className="mySwiper2"
+                        className="TopSlider"
                     >
                         <SwiperSlide>
                             <Image
@@ -68,6 +69,7 @@ const Info = () => {
                     <Swiper
                         onSwiper={setThumbsSwiper}
                         spaceBetween={10}
+                        loop
                         slidesPerView={4}
                         freeMode={true}
                         watchSlidesProgress={true}

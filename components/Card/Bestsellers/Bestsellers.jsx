@@ -11,7 +11,7 @@ const Bestsellers = () => {
             </p>
 
             <div className={b.best__list}>
-                <ProductCard products={products} />
+                <ProductCard products={products}/>
             </div>
         </section>
     )

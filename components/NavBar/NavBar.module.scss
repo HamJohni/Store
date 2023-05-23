@@ -6,6 +6,9 @@
   justify-content: space-around;
   margin-bottom: 30px;
 
+  &__none{
+  }
+
   &__item{
     display: flex;
     align-items: center;
@@ -29,6 +32,8 @@
   }
 }
 
-@media (max-width: 1050px) {
-
+@media (max-width: 950px) {
+  .list__none{
+    display: none !important;
+  }
 }

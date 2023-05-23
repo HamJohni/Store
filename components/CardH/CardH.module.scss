@@ -7,6 +7,24 @@
     justify-content: space-around;
   }
 
+  &__burger{
+    display: initial;
+
+    &_list{
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+    }
+
+    &_item{
+      font-size: 20px;
+
+      &:hover{
+        color: orange;
+      }
+    }
+  }
+
   &__title{}
 
   &__list{
@@ -91,5 +109,11 @@
 @media (max-width: 950px) {
   .header {
     padding: 30px 0 ;
+  }
+}
+
+@media (max-width: 850px) {
+  .header__list{
+    display: none;
   }
 }

@@ -6,12 +6,16 @@ import {FiHeart} from "react-icons/fi";
 import {BsBag} from "react-icons/bs";
 import {FiUser} from "react-icons/fi";
 import Link from "next/link";
+import Burger from "@/components/CardH/Burger/Burger";
 
 const CardH = () => {
     return (
         <header className={h.header}>
             <div className="container">
                 <nav className={h.header__nav}>
+                    <div className={h.header__burger}>
+                        <Burger/>
+                    </div>
                     <Link href="/" className={h.header__title}>
                         <svg width="113" height="25" viewBox="0 0 113 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0.49936 21.3204C0.366197 21.3204 0.246351 21.2737 0.139821 21.1804C0.0466069 21.0737 0 20.9537 0 20.8204V7.82176C0 7.67511 0.0466069 7.55512 0.139821 7.4618C0.246351 7.36847 0.366197 7.32181 0.49936 7.32181H2.65659C2.97618 7.32181 3.20922 7.46846 3.3557 7.76176L6.87119 14.0611L10.3867 7.76176C10.5332 7.46846 10.7662 7.32181 11.0858 7.32181H13.223C13.3695 7.32181 13.4894 7.36847 13.5826 7.4618C13.6891 7.55512 13.7424 7.67511 13.7424 7.82176V20.8204C13.7424 20.9671 13.6891 21.0871 13.5826 21.1804C13.4894 21.2737 13.3695 21.3204 13.223 21.3204H10.8461C10.6996 21.3204 10.5731 21.2737 10.4666 21.1804C10.3734 21.0871 10.3268 20.9671 10.3268 20.8204V13.3212L8.08963 17.5008C7.91652 17.8074 7.68348 17.9607 7.39052 17.9607H6.35185C6.17874 17.9607 6.03892 17.9207 5.93239 17.8407C5.82586 17.7607 5.73265 17.6474 5.65275 17.5008L3.39565 13.3212V20.8204C3.39565 20.9537 3.34904 21.0737 3.25583 21.1804C3.16261 21.2737 3.04276 21.3204 2.89629 21.3204H0.49936Z" fill="#2E2E2E"/>
@@ -62,7 +66,9 @@ const CardH = () => {
                     </ul>
 
                     <div className={h.header__icons}>
-                        <FiHeart size={23}/>
+                        <Link href="/favorites">
+                            <FiHeart size={23}/>
+                        </Link>
                         <div className={h.header__icons_notify}>
                             <span className={h.header__icons_notify_red}></span>
                             <BsBag size={23}/>

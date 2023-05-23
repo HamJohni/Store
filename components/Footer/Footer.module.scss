@@ -5,6 +5,7 @@
   &__content{
     display: flex;
     justify-content: space-between;
+    position: relative;
   }
 
   &__left{
@@ -50,7 +51,11 @@
     }
   }
 
-  &__right{}
+  &__right{
+    position: absolute;
+    z-index: 5;
+    right: 0;
+  }
 
   &__subtitle{
     font-size: 14px;
