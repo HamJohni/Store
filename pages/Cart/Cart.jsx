@@ -2,6 +2,8 @@ import React from 'react';
 import s from './Cart.module.scss';
 import CartCard from '@/components/CartCard/CartCard';
 import  { carts } from '../../contants/Cart'
+import ProductCard from '@/components/ProductCard/ProductCard';
+import { products } from '@/contants/Products';
 
 const Cart = () => {
 	return (
@@ -14,6 +16,16 @@ const Cart = () => {
 				</div>
 				<div className={s.card_section__block}>
 					<CartCard carts={carts}/>
+				</div>
+				<div className={s.card_section__order}>
+					<p>Итоговая стоимость: <span>69 960₽</span></p>
+					<button className={s.card_section__order__btn}>Оформить заказ</button>
+				</div>
+				<div className={s.card_section__products}>
+					<h1>Вам может понравиться</h1>
+					<div className={s.card_section__products__block}>
+						<ProductCard products={products} />
+					</div>
 				</div>
 			</div>
 		</section>
