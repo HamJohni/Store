@@ -7,7 +7,6 @@ import Heart from '../Heart/Heart';
 const ProductCard = ({img , imgAlt , name , type , price  , id  }) => {
 	return (
 		<>
-				return (
 					<div className={s.product_card} key={id}>
 						<div className={s.product_card__heart}>
 							<Heart id={id}/>	
@@ -24,7 +23,6 @@ const ProductCard = ({img , imgAlt , name , type , price  , id  }) => {
 							</div>
 						</div>
 					</div>
-				)
 		</>
 	);
 };

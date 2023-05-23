@@ -11,7 +11,6 @@ const CartCard = ({ carts }) => {
 		setCartItems(updatedCartItems);
 	};
 
-	return (
 		<>
 			{
 				cartItems.map((cart => {
@@ -41,7 +40,6 @@ const CartCard = ({ carts }) => {
 				}))
 			}
 		</>
-	);
 };
 
 export default CartCard;

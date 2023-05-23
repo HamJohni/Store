@@ -13,7 +13,18 @@ const Catalog = () => {
       <div className={s.right_side}>
         <div className={s.sorting}>dfsfsd[pkf]</div>
         <div className={s.Cards}>
-          <ProductCard products={products} />
+          {products.map((product) => {
+            return (
+              <ProductCard
+                img={product.img}
+                imgAlt={product.imgAlt}
+                name={product.name}
+                type={product.type}
+                price={product.price}
+                id={product.id}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

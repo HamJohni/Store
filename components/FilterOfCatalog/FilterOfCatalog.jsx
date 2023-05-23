@@ -55,6 +55,7 @@ const FilterOfCatalog = () => {
       <div className={s.price}>
         <h3>Цена</h3>
         <Slider
+        style={{position:"relative"}}
           range={{
             draggableTrack: true,
           }}
