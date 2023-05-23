@@ -15,7 +15,11 @@ const Main = () => {
 				<div className={s.main_section__block__products}>
 					<h2>Хиты продаж</h2>
 					<div className={s.main_section__block__products__block}>
-						<ProductCard products={products} />
+						{products.map((product) => {
+							return (
+								<ProductCard img={product.img} imgAlt={product.imgAlt} name={product.name} type={product.type} price={product.price} id={product.id} />
+							)
+						})}
 					</div>
 				</div>
 			</div>

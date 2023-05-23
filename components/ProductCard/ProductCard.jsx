@@ -4,29 +4,27 @@ import divan from '../../public/divan.png'
 import Image from 'next/image';
 import Heart from '../Heart/Heart';
 
-const ProductCard = ({ products }) => {
+const ProductCard = ({img , imgAlt , name , type , price  , id  }) => {
 	return (
 		<>
-			{products.map((product) => {
 				return (
-					<div className={s.product_card} key={product.id}>
+					<div className={s.product_card} key={id}>
 						<div className={s.product_card__heart}>
-							<Heart id={product.id}/>	
+							<Heart id={id}/>	
 						</div>
 						<div className={s.product_card__img}>
-							<Image src={product.img} width={0} height={0} alt={product.imgAlt} />
+							<Image src={img} width={0} height={0} alt={imgAlt} />
 						</div>
 						<div className={s.product_card_description}>
-							<h1>{product.name}</h1>
-							<h2>{product.type}</h2>
-							<p>{product.price}</p>
+							<h1>{name}</h1>
+							<h2>{type}</h2>
+							<p>{price}</p>
 							<div className={s.product_card_description_cart_btn}>
 								<button>Добавить в корзину</button>
 							</div>
 						</div>
 					</div>
 				)
-			})}
 		</>
 	);
 };
