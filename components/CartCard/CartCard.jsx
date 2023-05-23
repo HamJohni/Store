@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import s from './CartCard.module.scss'
 import minidivan from '../../public/minidivan.png'
 import Image from 'next/image';
-
+import {carts} from '../../contants/Cart'
 const CartCard = ({ carts }) => {
 	const [cartItems, setCartItems] = useState(carts);
 
