@@ -4,7 +4,7 @@
   &__nav{
     display: flex;
     align-items: center;
-    column-gap: 30px;
+    justify-content: space-around;
   }
 
   &__title{}
@@ -79,5 +79,17 @@
         border-radius: 50%;
       }
     }
+  }
+}
+
+@media (max-width: 1200px) {
+  .header__info{
+    display: none;
+  }
+}
+
+@media (max-width: 950px) {
+  .header {
+    padding: 30px 0 ;
   }
 }

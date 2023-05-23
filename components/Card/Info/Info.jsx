@@ -8,6 +8,7 @@ import '@smastrom/react-rating/style.css'
 
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Image } from '@chakra-ui/react'
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -40,9 +41,11 @@ const Info = () => {
                         className="mySwiper2"
                     >
                         <SwiperSlide>
-                            <img src="https://eurostyle.kg/files/products/.%20%D0%92%D0%A0-47%20%281%29.960x580.JPG?480de7c5c8985fc6be54c723f8c5bfc4" />
+                            <Image
+                                src="https://eurostyle.kg/files/products/.%20%D0%92%D0%A0-47%20%281%29.960x580.JPG?480de7c5c8985fc6be54c723f8c5bfc4"
+                                alt='Dan Abramov'
+                            />
                         </SwiperSlide>
-
                         <SwiperSlide>
                             <img src="https://eurostyle.kg/files/products/.%20%D0%92%D0%A0-47%20%282%29.960x580.JPG?b223d1417cfe8186a4dbc05de006e8c6" />
                         </SwiperSlide>
@@ -72,7 +75,10 @@ const Info = () => {
                         className="mySwiper"
                     >
                         <SwiperSlide>
-                            <img src="https://eurostyle.kg/files/products/.%20%D0%92%D0%A0-47%20%281%29.960x580.JPG?480de7c5c8985fc6be54c723f8c5bfc4" />
+                            <Image
+                                src="https://eurostyle.kg/files/products/.%20%D0%92%D0%A0-47%20%281%29.960x580.JPG?480de7c5c8985fc6be54c723f8c5bfc4"
+                                alt='Dan Abramov'
+                            />
                         </SwiperSlide>
 
                         <SwiperSlide>

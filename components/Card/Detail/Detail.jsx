@@ -4,7 +4,7 @@ import Character from "@/components/Card/Detail/Character/Character";
 
 const Detail = () => {
     return (
-        <Tabs position="relative" variant="unstyled" mb="90px">
+        <Tabs position="relative" variant="unstyled">
             <TabList>
                 <Tab>Характеристики</Tab>
                 <Tab>Отзывы</Tab>
