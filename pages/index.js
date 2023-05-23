@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Auth from '../components/Auth/Auth'
 import Regis from '../components/Regis/Regis';
+import Main from './Main/Main'
+import Card from './Cart/Cart'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,6 +18,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Card/>
+      {/* <Main/> */}
     
     </>
   )
