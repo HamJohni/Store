@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Slider, Checkbox } from "antd";
 import s from "./FilterOfCatalog.module.scss";
 import { Button, Dropdown, Space, Tooltip, message } from "antd";
@@ -43,29 +43,49 @@ const FilterOfCatalog = () => {
   };
 
   const onChange = (e) => {
-    console.log(`checked = ${e.target.checked}`);
+    // console.log(`checked = ${e.target.checked}`);
+    
   };
+
+  const [priceRange, setPriceRange] = useState([0, 100000]);
+
+  const handlePriceChange = (value) => {
+    setPriceRange(value);
+    onChange(value);
+  };
+
+  const formatPrice = (price) => {
+    return `${price.toLocaleString()}₽`;
+    
+  };
+
   return (
     <div className={s.FilterOfCatalog}>
       <div className={s.Select}>
         <h3>Раздел</h3>
-        <Selection></Selection>
+        <Selection>Гостинные</Selection>
+        <Selection>Мягкая мебель</Selection>
+        <Selection>Диваны</Selection>
       </div>
 
       <div className={s.price}>
         <h3>Цена</h3>
         <Slider
-        style={{position:"relative"}}
-          range={{
-            draggableTrack: true,
-          }}
-          defaultValue={[20, 50]}
+          style={{ position: "relative" }}
+          range={{ draggableTrack: false }}
+          defaultValue={priceRange}
+          onChange={handlePriceChange}
         />
+        <div>
+          <div>Начальное число: {formatPrice(priceRange[0])}</div>
+          <div>Максимальное число: {formatPrice(priceRange[1])}</div>
+        </div>
       </div>
       <div className={s.color}>
         <h3>Цвет</h3>
       </div>
       <div className={s.brand}>
+        <h3>Бренд</h3>
         <Checkboxes>Динс</Checkboxes>
         <Checkboxes>Кускен</Checkboxes>
         <Checkboxes>Эби</Checkboxes>

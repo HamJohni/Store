@@ -1,16 +1,24 @@
 .FilterOfCatalog {
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   padding: 20px 20px 30px 20px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  border: 1px solid black;
-  box-shadow: 7px 7px 4px rgba(0, 10, 10, 0.1);
+  gap: 3vh;
+  border: 1px solid #3535361c;
+  box-shadow: 7px 7px 4px 4px  rgba(10, 10, 10, 0.1);
+  h3{
+    margin-bottom: 1.6vh;
+  }
   .dropdowns{
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+  .Select{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
   }
   .brand{
     display: flex;
