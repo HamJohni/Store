@@ -14,21 +14,21 @@
 }
 
 .container{
-    max-width: 1180px;
+    max-width: 1240px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 20px;
 }
 
-.btn,a{
+button,a{
     cursor: pointer;
 }
 
-.btn:hover{
+button:hover{
     transform: scale(1.05);
 }
 
-.btn:active{
+button:active{
     transform: scale(.95);
 }
 

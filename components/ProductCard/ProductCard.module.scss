@@ -35,6 +35,7 @@
   padding: 10px 0 0 0;
   margin-top: 33px;
   cursor: pointer;
+
   .product_card__heart {
     width: 100%;
     display: flex;
@@ -103,7 +104,7 @@
         outline: none;
         background: #245462;
 
-        font-family: "Roboto";
+        font-family: "Roboto",sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 13px;
