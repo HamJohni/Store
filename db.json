@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "username": "qwfqwfqwf",
+      "email": "qwfqwf@gmail.com",
+      "password": "$2b$10$bKEyfWi7K8K8m7D2PNH.4..r7ql3I1CMRBRfGMs9E7LYi9q5QrSW."
+    },
+    {
+      "username": "fwqfqwf",
+      "email": "fiowqj@gmail.com",
+      "password": "$2b$10$m.YCiC4SvL0.AJPVgkwkvutiqkpbqsNJyx/YwHvpCWa.FNJMNMB4O"
+    },
+    {
+      "username": "baitur",
+      "email": "zbajtur@gmail.com",
+      "password": "$2b$10$jieM8q366YTpBMiAXllu0.C2b1vaYFs7G2maBHw0M7f7SH4XE8PE."
+    },
+    {
+      "username": "looks",
+      "email": "looks@gmail.com",
+      "password": "$2b$10$q991fX/XyftrkKjr51B7MODzt1H9Bur3rGRKmyEgRuWOVXA4Q6Z2K"
+    },
+    {
+      "username": "hello",
+      "email": "hello@gmail.com",
+      "password": "$2b$10$h.ogTuaNEiLUrICsfLNGV.51OhsCeSTX9x.12CaAmeYNGPxEoM8gu"
+    },
+    {
+      "username": "belek",
+      "email": "belek@gmail.com",
+      "password": "$2b$10$3jXKXRn7mdhfW2xxDVyOKe1s7HKwd7WDu.34GRanGjceh4O4lYHbu"
+    },
+    {
+      "username": "books",
+      "email": "books@gmail.com",
+      "password": "$2b$10$YGpGs6iZIAR2DNwFcX0jyeUp94qeC6gRKtnLwjG3A4FUV34TaUe8W"
+    },
+    {
+      "username": "apple",
+      "email": "apple@gmail.com",
+      "password": "$2b$10$rQXDFlsIFpoU/yTVbFxmgOraiNpMARKzZxhuzBFRNCCHq8/QThuza"
+    }
+  ]
+}
