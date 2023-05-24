@@ -1,9 +1,10 @@
-import React from 'react';
+import CardH from "@/components/CardH/CardH";
 
 const Header = () => {
     return (
-        <div>
-        </div>
+        <>
+            <CardH/>
+        </>
     );
 };
 
