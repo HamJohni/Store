@@ -65,9 +65,10 @@ const FilterOfCatalog = ({
           onChange={handlePriceChange}
           max={maxPrice}
         />
-        <div>
-          <div>Начальное число: {formatPrice(priceRange[0])}</div>
-          <div>Максимальное число: {formatPrice(priceRange[1])}</div>
+        <div className={s.price_range}>
+          <div className={s.price_block}>{formatPrice(priceRange[0])}</div>
+          <div className={s.line_between_prices}></div>
+          <div className={s.price_block}>{formatPrice(priceRange[1])}</div>
         </div>
       </div>
       <div className={s.color}>
