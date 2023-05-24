@@ -5,7 +5,9 @@ import { Button, Dropdown, Space, Tooltip, message } from "antd";
 import Selection from "../Selection/Selection";
 import Checkboxes from "../Checkbox/Checkboxes";
 import { products } from "@/contants/Products";
-const FilterOfCatalog = () => {
+
+
+const FilterOfCatalog = ({priceRange, setPriceRange, handlePriceChange, maxPrice, formatPrice}) => {
   const handleButtonClick = (e) => {
     message.info("Click on left button.");
     console.log("click left button", e);
@@ -13,9 +15,6 @@ const FilterOfCatalog = () => {
   const handleMenuClick = (e) => {
     message.info("Click on menu item.");
     console.log("click", e);
-  };
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
   };
   const items = [
     {
@@ -43,27 +42,9 @@ const FilterOfCatalog = () => {
     onClick: handleMenuClick,
   };
 
-  const onChange = (e) => {
-    // console.log(`checked = ${e.target.checked}`);
-    
-  };
-
-  const [priceRange, setPriceRange] = useState([0, 100000]);
-
-  const handlePriceChange = (value) => {
-    setPriceRange(value);
-    onChange(value);
-  };
-
-  const formatPrice = (price) => {
-    return `${price.toLocaleString()}₽`;
-    
-  };
-
-  const maxPrice = products.reduce((max, product) => {
-    const price = parseInt(product.price.replace(/\s|₽/g, ''));
-    return price > max ? price : max;
-  }, 0);
+  // const formatPrice = (price) => {
+  //   return `${price.toLocaleString()}₽`;
+  // };
 
   return (
     <div className={s.FilterOfCatalog}>

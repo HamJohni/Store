@@ -5,10 +5,11 @@
     display: flex;
     flex-direction: row;
     .left_side{
-        width: 38vw;
+        width: 24vw;
     }
     .right_side{
         display: flex;
+        width: 76vw;
         flex-direction: column;
         .sorting{
         width: 100%;
