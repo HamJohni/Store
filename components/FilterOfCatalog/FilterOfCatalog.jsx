@@ -6,8 +6,13 @@ import Selection from "../Selection/Selection";
 import Checkboxes from "../Checkbox/Checkboxes";
 import { products } from "@/contants/Products";
 
-
-const FilterOfCatalog = ({priceRange, setPriceRange, handlePriceChange, maxPrice, formatPrice}) => {
+const FilterOfCatalog = ({
+  priceRange,
+  setPriceRange,
+  handlePriceChange,
+  maxPrice,
+  formatPrice,
+}) => {
   const handleButtonClick = (e) => {
     message.info("Click on left button.");
     console.log("click left button", e);
@@ -41,10 +46,6 @@ const FilterOfCatalog = ({priceRange, setPriceRange, handlePriceChange, maxPrice
     items,
     onClick: handleMenuClick,
   };
-
-  // const formatPrice = (price) => {
-  //   return `${price.toLocaleString()}₽`;
-  // };
 
   return (
     <div className={s.FilterOfCatalog}>

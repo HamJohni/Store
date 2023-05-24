@@ -43,8 +43,10 @@ const Catalog = ({}) => {
       <div className={s.right_side}>
         <div className={s.sorting}>dfsfsd[pkf]</div>
         <div className={s.Cards}>
-          {(filteredProducts.length > 0 ? filteredProducts : products).map(
-            (product) => (
+        {filteredProducts.length === 0 ? (
+            <div className={s.noProducts}>Не найдено товаров по данной цене!</div>
+          ) : (
+            filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}
                 img={product.img}
@@ -54,7 +56,7 @@ const Catalog = ({}) => {
                 price={product.price}
                 id={product.id}
               />
-            )
+            ))
           )}
         </div>
       </div>
