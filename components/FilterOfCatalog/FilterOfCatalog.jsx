@@ -4,6 +4,7 @@ import s from "./FilterOfCatalog.module.scss";
 import { Button, Dropdown, Space, Tooltip, message } from "antd";
 import Selection from "../Selection/Selection";
 import Checkboxes from "../Checkbox/Checkboxes";
+import { products } from "@/contants/Products";
 const FilterOfCatalog = () => {
   const handleButtonClick = (e) => {
     message.info("Click on left button.");
@@ -59,6 +60,11 @@ const FilterOfCatalog = () => {
     
   };
 
+  const maxPrice = products.reduce((max, product) => {
+    const price = parseInt(product.price.replace(/\s|₽/g, ''));
+    return price > max ? price : max;
+  }, 0);
+
   return (
     <div className={s.FilterOfCatalog}>
       <div className={s.Select}>
@@ -75,6 +81,7 @@ const FilterOfCatalog = () => {
           range={{ draggableTrack: false }}
           defaultValue={priceRange}
           onChange={handlePriceChange}
+          max={maxPrice}
         />
         <div>
           <div>Начальное число: {formatPrice(priceRange[0])}</div>
