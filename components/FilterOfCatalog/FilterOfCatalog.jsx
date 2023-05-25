@@ -14,39 +14,6 @@ const FilterOfCatalog = ({
   maxPrice,
   formatPrice,
 }) => {
-  const handleButtonClick = (e) => {
-    message.info("Click on left button.");
-    console.log("click left button", e);
-  };
-  const handleMenuClick = (e) => {
-    message.info("Click on menu item.");
-    console.log("click", e);
-  };
-  const items = [
-    {
-      label: "1st menu item",
-      key: "1",
-    },
-    {
-      label: "2nd menu item",
-      key: "2",
-    },
-    {
-      label: "3rd menu item",
-      key: "3",
-      danger: true,
-    },
-    {
-      label: "4rd menu item",
-      key: "4",
-      danger: true,
-      disabled: true,
-    },
-  ];
-  const menuProps = {
-    items,
-    onClick: handleMenuClick,
-  };
 
   return (
     <div className={s.FilterOfCatalog}>

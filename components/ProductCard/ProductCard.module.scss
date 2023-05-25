@@ -72,7 +72,7 @@
       font-family: "Roboto";
       font-style: normal;
       font-weight: 400;
-      font-size: 11px ;
+      font-size: 11px;
       @include font-size(11, 8, 9, 10);
       margin-top: 4px;
       line-height: 13px;
@@ -138,5 +138,32 @@
   }
   .product_card_description {
     padding: 0 4% 0 4% !important;
+
+    .product_card_description_cart_btn {
+      width: 100%;
+      margin-top: 20px;
+      transition: 0.3s;
+
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.4s, transform 0.4s;
+      button {
+        width: 100%;
+        height: 24px;
+
+        border: none;
+        outline: none;
+        background: #245462;
+
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 15px;
+
+        color: #ffffff;
+        cursor: pointer;
+      }
+    }
   }
 }
