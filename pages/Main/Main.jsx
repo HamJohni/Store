@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import s from './Main.module.scss'
 import MainSlider from '@/components/MainSlider/MainSlider';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import { mainSliders } from '@/contants/MainSliders';
-import {getUser} from "@/redux/reducers/user";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 const Main = () => {
 	const {products} = useSelector(state => state.products)
 
-	console.log(products)
 	return (
 		<section className='container'>
 			<div className={s.main_section__block}>
@@ -21,14 +18,7 @@ const Main = () => {
 					<div className={s.main_section__block__products__block}>
 						{products.map((product) => {
 							return (
-								<ProductCard
-									img={product.img}
-									imgAlt={product.imgAlt}
-									name={product.name}
-									type={product.type}
-									price={product.price}
-									key={product.id}
-									id={product.id} />
+								<ProductCard product={product}/>
 							)
 						})}
 					</div>

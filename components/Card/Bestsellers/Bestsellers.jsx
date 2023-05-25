@@ -11,7 +11,11 @@ const Bestsellers = () => {
             </p>
 
             <div className={b.best__list}>
-                <ProductCard products={products}/>
+                {products.map((product) => {
+                    return (
+                        <ProductCard product={product}/>
+                    )
+                })}
             </div>
         </section>
     )

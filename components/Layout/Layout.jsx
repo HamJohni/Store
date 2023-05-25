@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {getUser} from "@/redux/reducers/user";
 import {useEffect} from "react";
 import {getProducts} from "@/redux/reducers/products";
+import {getFavorites} from "@/redux/reducers/favorites";
 
 const Layout = ({ children }) => {
 
@@ -25,10 +26,9 @@ const Layout = ({ children }) => {
 
     return (
         <>
-                <Header />
-                {children}
-                <Footer />
-
+            <Header />
+            {children}
+            <Footer />
         </>
     );
 };

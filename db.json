@@ -122,5 +122,43 @@
       "type": "Барные стулья",
       "price": 19990
     }
+  ],
+  "favorites": [
+    {
+      "userId": 1,
+      "id": 11,
+      "img": "/pinkDivan.png",
+      "imgAlt": "pinkDivan_png",
+      "name": "Вилли Pink",
+      "type": "Детский диван",
+      "price": 21990
+    },
+    {
+      "userId": 1,
+      "id": 12,
+      "img": "/polka.png",
+      "imgAlt": "polka_png",
+      "name": "Валенсия Beige",
+      "type": "Барные стулья",
+      "price": 19990
+    },
+    {
+      "userId": 1,
+      "id": 10,
+      "img": "/obuvpolka.png",
+      "imgAlt": "obuvpolka_png",
+      "name": "Валенсия Beige",
+      "type": "Барные стулья",
+      "price": 10990
+    },
+    {
+      "userId": 1,
+      "id": 1,
+      "img": "/divan.png",
+      "imgAlt": "divan_png",
+      "name": "Сан-Паулу Velvet Brown",
+      "type": "Барные стулья",
+      "price": 25990
+    }
   ]
 }
