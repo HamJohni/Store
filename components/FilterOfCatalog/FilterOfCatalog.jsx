@@ -5,6 +5,7 @@ import { Button, Dropdown, Space, Tooltip, message } from "antd";
 import Selection from "../Selection/Selection";
 import Checkboxes from "../Checkbox/Checkboxes";
 import { products } from "@/contants/Products";
+import ColorBlocks from "../ColorBlocks/ColorBlocks";
 
 const FilterOfCatalog = ({
   priceRange,
@@ -73,6 +74,7 @@ const FilterOfCatalog = ({
       </div>
       <div className={s.color}>
         <h3>Цвет</h3>
+        <ColorBlocks/>
       </div>
       <div className={s.brand}>
         <h3>Бренд</h3>
@@ -81,6 +83,7 @@ const FilterOfCatalog = ({
         <Checkboxes>Эби</Checkboxes>
         <Checkboxes>Реджио</Checkboxes>
         <Checkboxes>Сайле</Checkboxes>
+        <h3 className={s.more}>Посмотреть еще</h3>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 .FilterOfCatalog {
   width: 100%;
-  height: 80vh;
+  height: 90vh;
   padding: 20px 20px 30px 20px;
   display: flex;
   flex-direction: column;
@@ -26,6 +26,12 @@
     flex-direction: column;
     gap: 5px;
     font-size: 16px;
+    .more{
+      margin-top: 1.6vh;
+      cursor: pointer;
+      color: #245462;
+      font-size: 17px;
+    }
   }
   .price_range{
     font-size: 16px;
@@ -36,7 +42,7 @@
     justify-content: center;
     gap: 20px;
     .price_block{
-      background-color: #b8b6b6;
+      background-color: #b8b6b681;
       border-radius: 2px;
       padding: 8px;
       width: 6vw;
