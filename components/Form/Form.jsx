@@ -11,6 +11,8 @@ const Form = () => {
 
     const {user} = useSelector(state => state.user)
 
+    console.log(user)
+
     const {pathname} = useRouter()
     const router = useRouter()
     const toast = useToast()

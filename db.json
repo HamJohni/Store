@@ -3,8 +3,124 @@
     {
       "email": "joni.pacan@list.ru",
       "password": "$2a$10$ROeLw9qrf1.x7q7QByJvs.Wjog0a557XIYhvtEncqFxu9sRaLlUSu",
-      "name": "Zhanybek ",
+      "name": "Zhanybek",
       "id": 1
+    },
+    {
+      "email": "joni.pasdasacan@list.ru",
+      "password": "$2a$10$ROeLw9qrf1.x7q7QByJvs.Wjog0a557XIYhvtEncqFxu9sRaLlUSu",
+      "name": "BASSASA ",
+      "id": 3
+    },
+    {
+      "email": "joni.asdaspacan@list.ru",
+      "password": "$2a$10$ROeLw9qrf1.x7q7QByJvs.Wjog0a557XIYhvtEncqFxu9sRaLlUSu",
+      "name": "ASdasd",
+      "id": 4
+    },
+    {
+      "email": "joni.paasdaslkcan@list.ru",
+      "password": "$2a$10$ROeLw9qrf1.x7q7QByJvs.Wjog0a557XIYhvtEncqFxu9sRaLlUSu",
+      "name": "Zhanybeasdask ",
+      "id": 5
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "img": "/divan.png",
+      "imgAlt": "divan_png",
+      "name": "Сан-Паулу Velvet Brown",
+      "type": "Барные стулья",
+      "price": 25990
+    },
+    {
+      "id": 2,
+      "img": "/obuvpolka.png",
+      "imgAlt": "obuvpolka_png",
+      "name": "Валенсия Beige",
+      "type": "Барные стулья",
+      "price": 10990
+    },
+    {
+      "id": 3,
+      "img": "/pinkDivan.png",
+      "imgAlt": "pinkDivan_png",
+      "name": "Вилли Pink",
+      "type": "Детский диван",
+      "price": 21990
+    },
+    {
+      "id": 4,
+      "img": "/polka.png",
+      "imgAlt": "polka_png",
+      "name": "Валенсия Beige",
+      "type": "Барные стулья",
+      "price": 19990
+    },
+    {
+      "id": 5,
+      "img": "/divan.png",
+      "imgAlt": "divan_png",
+      "name": "Сан-Паулу Velvet Brown",
+      "type": "Барные стулья",
+      "price": 25990
+    },
+    {
+      "id": 6,
+      "img": "/obuvpolka.png",
+      "imgAlt": "obuvpolka_png",
+      "name": "Валенсия Beige",
+      "type": "Барные стулья",
+      "price": 10990
+    },
+    {
+      "id": 7,
+      "img": "/pinkDivan.png",
+      "imgAlt": "pinkDivan_png",
+      "name": "Вилли Pink",
+      "type": "Детский диван",
+      "price": 21990
+    },
+    {
+      "id": 8,
+      "img": "/polka.png",
+      "imgAlt": "polka_png",
+      "name": "Валенсия Beige",
+      "type": "Барные стулья",
+      "price": 19990
+    },
+    {
+      "id": 9,
+      "img": "/divan.png",
+      "imgAlt": "divan_png",
+      "name": "Сан-Паулу Velvet Brown",
+      "type": "Барные стулья",
+      "price": 25990
+    },
+    {
+      "id": 10,
+      "img": "/obuvpolka.png",
+      "imgAlt": "obuvpolka_png",
+      "name": "Валенсия Beige",
+      "type": "Барные стулья",
+      "price": 10990
+    },
+    {
+      "id": 11,
+      "img": "/pinkDivan.png",
+      "imgAlt": "pinkDivan_png",
+      "name": "Вилли Pink",
+      "type": "Детский диван",
+      "price": 21990
+    },
+    {
+      "id": 12,
+      "img": "/polka.png",
+      "imgAlt": "polka_png",
+      "name": "Валенсия Beige",
+      "type": "Барные стулья",
+      "price": 19990
     }
   ]
 }

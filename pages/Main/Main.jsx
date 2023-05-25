@@ -2,27 +2,14 @@ import React, { useEffect, useState } from 'react';
 import s from './Main.module.scss'
 import MainSlider from '@/components/MainSlider/MainSlider';
 import ProductCard from '@/components/ProductCard/ProductCard';
-// import { products } from '@/contants/Products';
 import { mainSliders } from '@/contants/MainSliders';
-import axios from 'axios';
+import {getUser} from "@/redux/reducers/user";
+import {useDispatch, useSelector} from "react-redux";
 
 const Main = () => {
-	const [products, setProducts] = useState([]);
+	const {products} = useSelector(state => state.products)
 
-	useEffect(() => {
-		fetchProducts();
-	}, []);
-
-	const fetchProducts = async () => {
-		try {
-			const response = await axios.get('http://localhost:8080/products');
-			setProducts(response.data);
-		} catch (error) {
-			console.error('Ошибка при получении продуктов:', error);
-		}
-	};
-
-
+	console.log(products)
 	return (
 		<section className='container'>
 			<div className={s.main_section__block}>

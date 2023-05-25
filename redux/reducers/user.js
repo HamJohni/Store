@@ -3,14 +3,14 @@ import axios from "axios";
 
 export const getUser = createAsyncThunk(
     'user/getUser',
-    async(_,{rejectedWithValue}) => {
+    async(id,{rejectedWithValue}) => {
         try {
-            const res = await axios('http://localhost:4080/users')
+            const res = await axios(`http://localhost:4080/users?id=${id}`)
 
             if (res.statusText !== 'OK') {
                 throw new Error("Произошла ошибка")
             }
-            return res.data
+            return res.data[0]
         }catch (err){
             return rejectedWithValue(err.message)
         }
@@ -44,7 +44,7 @@ const userSlice = createSlice({
         },
         [getUser.fulfilled]: (state, action) => {
             state.status = true
-            state.reviews = action.payload
+            state.user = action.payload
         }
     }
 })

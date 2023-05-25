@@ -7,8 +7,12 @@ import {BsBag} from "react-icons/bs";
 import {FiUser} from "react-icons/fi";
 import Link from "next/link";
 import Burger from "@/components/CardH/Burger/Burger";
+import {useSelector} from "react-redux";
 
 const CardH = () => {
+
+    const {user} = useSelector(state => state.user)
+
     return (
         <header className={h.header}>
             <div className="container">
