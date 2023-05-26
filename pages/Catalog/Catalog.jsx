@@ -1,26 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import s from "./Catalog.module.scss";
 import FilterOfCatalog from "@/components/FilterOfCatalog/FilterOfCatalog";
 import { products } from "@/contants/Products";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import { Button, Dropdown, Modal } from "antd";
 const Catalog = ({}) => {
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, 10000]);
+  const [filteredProducts, setFilteredProducts] = useState([products]);
+  const [priceRange, setPriceRange] = useState([0, 222990]);
   const [open, setOpen] = useState(false);
+  console.log(products);
+
   const handlePriceChange = (value) => {
     // Фильтрация продуктов по цене
     const filtered = products.filter(
       (product) =>
-        parseInt(product.price.replace(/\D/g, "")) >= value[0] &&
-        parseInt(product.price.replace(/\D/g, "")) <= value[1]
+        parseInt(product.price) >= value[0] &&
+        parseInt(product.price) <= value[1]
     );
     setFilteredProducts(filtered);
     setPriceRange(value);
   };
 
+  useEffect(() => {
+    // Нахождение минимальной и максимальной цены
+    const prices = products.map((product) => parseInt(product.price));
+    const maximPrice = Math.max(...prices);
+
+    // Установка начального значения диапазона цен
+    setPriceRange([0, maxPrice]);
+    handlePriceChange([0, maxPrice]);
+  }, []);
+
   const maxPrice = products.reduce((max, product) => {
-    const price = parseInt(product.price.replace(/\s|₽/g, ""));
+    const price = product.price;
     return price > max ? price : max;
   }, 0);
 
@@ -31,41 +43,19 @@ const Catalog = ({}) => {
   const items = [
     {
       key: "1",
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-        >
-          по убыванию цены
-        </a>
-      ),
+      label: <p>по убыванию цены</p>,
     },
     {
       key: "2",
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.aliyun.com"
-        >
-          по возрастанию цены
-        </a>
-      ),
+      label: <p>по возрастанию цены</p>,
     },
     {
       key: "3",
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
-        >
-          по популярности
-        </a>
-      ),
+      label: <p>по популярности</p>,
     },
   ];
+
+  console.log(filteredProducts);
 
   return (
     <section className={s.Catalog}>
@@ -90,15 +80,16 @@ const Catalog = ({}) => {
             open={open}
             closable={true}
             onCancel={() => setOpen(false)}
-            width={420}
+            width={600}
             className="modalStyle"
           >
             <FilterOfCatalog
-             priceRange={priceRange}
-             handlePriceChange={handlePriceChange}
-             maxPrice={maxPrice}
-             setPriceRange={setPriceRange}
-             formatPrice={formatPrice}/>
+              priceRange={priceRange}
+              handlePriceChange={handlePriceChange}
+              maxPrice={maxPrice}
+              setPriceRange={setPriceRange}
+              formatPrice={formatPrice}
+            />
           </Modal>
           <div className={s.right_side_of_sort}>
             <h3>Сортировать</h3>

@@ -7,7 +7,7 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '35 990 ₽'
+		price: 35999 
 	},
 	{
 		id: 2,
@@ -15,7 +15,7 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '15 966 ₽'
+		price: 15966
 	},
 	{
 		id: 3,
@@ -23,7 +23,7 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '25 990 ₽'
+		price: 25990
 	},
 	{
 		id: 4,
@@ -31,7 +31,7 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '222 222 ₽'
+		price: 222222
 	},
 	{
 		id: 5,
@@ -39,7 +39,7 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '25 990 ₽'
+		price: 25990
 	},
 	{
 		id: 6,
@@ -47,7 +47,7 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '25 990 ₽'
+		price: 25990
 	},
 	{
 		id: 7,
@@ -55,7 +55,7 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '25 990 ₽'
+		price: 25990
 	},
 	{
 		id: 8,
@@ -63,7 +63,7 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '25 990 ₽'
+		price: 25990
 	},
 	{
 		id: 9,
@@ -71,7 +71,7 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '25 990 ₽'
+		price: 25990 
 	},
 	{
 		id: 10,
@@ -79,7 +79,7 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '25 990 ₽'
+		price: 222990
 	},
 	{
 		id: 11,
@@ -87,7 +87,7 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '25 990 ₽'
+		price: 25990
 	},
 	{
 		id: 12,
@@ -95,6 +95,6 @@ export const products = [
 		imgAlt: 'divan_img',
 		name: 'Сан-Паулу Velvet Brown',
 		type: 'Барные стулья',
-		price: '120 990 ₽'
+		price: 120990
 	},
 ]

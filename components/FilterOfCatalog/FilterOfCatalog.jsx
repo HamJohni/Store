@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Slider, Checkbox } from "antd";
 import s from "./FilterOfCatalog.module.scss";
-import { Button, Dropdown, Space, Tooltip, message } from "antd";
 import Selection from "../Selection/Selection";
 import Checkboxes from "../Checkbox/Checkboxes";
 import { products } from "@/contants/Products";
