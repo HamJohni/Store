@@ -1,38 +1,38 @@
 import f from './Favorites.module.scss'
 import Links from "@/components/Links/Links";
-import {products} from "@/contants/Products";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import {useDispatch, useSelector} from "react-redux";
-import favorites, {getFavorites} from "@/redux/reducers/favorites";
 import {useEffect} from "react";
+import {getFavorites} from "@/redux/reducers/favorites";
+
 
 const Favorites = () => {
 
-    const dispatch = useDispatch()
+    let item = {}
 
-    const {user} = useSelector(state => state.user)
+    if (typeof window !== 'undefined') {
+        item = JSON.parse(localStorage.getItem('user'))
+    }
+
+    const dispatch = useDispatch()
 
     const {favorites} = useSelector(state => state.favorites)
 
     useEffect(() => {
-        dispatch(getFavorites(user.id))
-    },[])
-
-    console.log(favorites)
+        dispatch(getFavorites(item.id))
+    },[favorites])
 
     return(
         <section className={f.fav}>
             <div className="container">
                 <Links/>
-
                 <p className={f.fav__subtitle}>
                     Избранное
                 </p>
-
                 <div className={f.fav__content}>
                     {
                         favorites.map(item => (
-                            <ProductCard product={item}/>
+                            <ProductCard key={item.id} product={item}/>
                         ))
                     }
                 </div>

@@ -6,19 +6,42 @@ import {BsChevronDown} from "react-icons/bs";
 import {Rating, Star} from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Image } from '@chakra-ui/react'
+
 
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
+import {useRouter} from "next/router";
+import axios from "axios";
 
 
-const Info = () => {
-    const [rating, setRating] = useState(4)
+const Info =  () => {
+
+    const {query} = useRouter()
+
+    const [product, setProduct] = useState({})
+
+    useEffect(() => {
+        axios(`http://localhost:4080/products?id=${query.id}`)
+            .then((res) => {
+                setProduct(res.data[0])
+            }).catch((err) => alert(err.message))
+    },[])
+
+    useEffect(() => {
+        axios(`http://localhost:4080/products?id=${query.id}`)
+            .then((res) => {
+                setProduct(res.data[0])
+            }).catch((err) => alert(err.message))
+    },[query])
+
+    console.log(product)
+
+    const [rating] = useState(4)
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     const myStyles = {
@@ -42,10 +65,7 @@ const Info = () => {
                         className="TopSlider"
                     >
                         <SwiperSlide>
-                            <Image
-                                src="https://eurostyle.kg/files/products/.%20%D0%92%D0%A0-47%20%281%29.960x580.JPG?480de7c5c8985fc6be54c723f8c5bfc4"
-                                alt='Dan Abramov'
-                            />
+                            <img src={product?.img} alt={product?.imgAlt}/>
                         </SwiperSlide>
                         <SwiperSlide>
                             <img src="https://eurostyle.kg/files/products/.%20%D0%92%D0%A0-47%20%282%29.960x580.JPG?b223d1417cfe8186a4dbc05de006e8c6" />
@@ -94,10 +114,7 @@ const Info = () => {
                         className="BottomSwiper"
                     >
                         <SwiperSlide>
-                            <Image
-                                src="https://eurostyle.kg/files/products/.%20%D0%92%D0%A0-47%20%281%29.960x580.JPG?480de7c5c8985fc6be54c723f8c5bfc4"
-                                alt='Dan Abramov'
-                            />
+                            <img src={product?.img} alt={product?.imgAlt}/>
                         </SwiperSlide>
 
                         <SwiperSlide>
@@ -119,16 +136,15 @@ const Info = () => {
                 </div>
             </div>
 
-
             <div className={i.info__right}>
-                <Rating style={{maxWidth: 100}} value={rating} onChange={setRating} itemStyles={myStyles}/>
+                <Rating style={{maxWidth: 100}} value={rating} itemStyles={myStyles}/>
 
-                <h2 className={i.info__right_title}>Динс Velvet Yellow</h2>
+                <h2 className={i.info__right_title}>{product?.name}</h2>
 
-                <p className={i.info__right_subtitle}>Диваны</p>
+                <p className={i.info__right_subtitle}>{product?.type}</p>
 
                 <div className={i.info__right_mid}>
-                    <p className={i.info__right_mid_price}>4 690₽</p>
+                    <p className={i.info__right_mid_price}>{product?.price}₽</p>
 
                     <button className={i.info__right_mid_btn}>Купить</button>
 
@@ -147,18 +163,6 @@ const Info = () => {
                         </span>
 
                         <div className={i.info__right_categories_content} style={{ background: '#FFC107'}}>
-                            <BsChevronDown size={15} className={i.info__right_categories_content_arrow}/>
-                        </div>
-                    </div>
-
-                    <div className={i.info__right_categories_box}>
-                        <span className={i.info__right_categories_subtitle}>
-                            Количество
-                        </span>
-
-                        <div className={i.info__right_categories_content}>
-                            1
-                            <BsChevronDown size={15} className={i.info__right_categories_content_arrow}/>
                         </div>
                     </div>
 
@@ -180,10 +184,11 @@ const Info = () => {
                 </p>
 
                 <p className={i.info__right_desc_text}>
-                    Лаконичные линии и простые формы, безупречный стиль и индивидуальность – все это диван «Динс». Сдержанный скандинавский дизайн украсит любую современную обстановку. Элегантность, комфорт и функциональность, собранные воедино – «Динс» просто создан для размеренного отдыха в кругу семьи или компании друзей!
+                    {product?.desc}
                 </p>
             </div>
         </div>
     )
 }
+
 export default Info

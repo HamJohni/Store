@@ -35,8 +35,12 @@
   padding: 10px 0 0 0;
   margin-top: 33px;
   cursor: pointer;
+  position: relative;
+  z-index: 2;
 
   .product_card__heart {
+    position: relative;
+    z-index: 4;
     width: 100%;
     display: flex;
     justify-content: flex-end;

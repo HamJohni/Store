@@ -6,12 +6,11 @@ import {useForm} from "react-hook-form";
 import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
 import {increment} from "@/redux/reducers/user";
+import {useEffect} from "react";
 
 const Form = () => {
 
     const {user} = useSelector(state => state.user)
-
-    console.log(user)
 
     const {pathname} = useRouter()
     const router = useRouter()
@@ -92,6 +91,12 @@ const Form = () => {
             })
         })
     }
+
+    useEffect(() => {
+        if(user){
+            router.push('/')
+        }
+    },[])
 
     return(
         <form noValidate onSubmit={handleSubmit(submit)}>
