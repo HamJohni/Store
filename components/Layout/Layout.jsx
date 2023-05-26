@@ -9,6 +9,8 @@ import {useRouter} from "next/router";
 
 const Layout = ({ children }) => {
 
+    const router = useRouter()
+
     const dispatch = useDispatch()
 
     let item = {}
@@ -17,23 +19,27 @@ const Layout = ({ children }) => {
         item = JSON.parse(localStorage.getItem('user'))
     }
 
-    const router = useRouter()
+    if(item === null){
+        router.push('/regis')
+    }else{
+        useEffect(() => {
+            !item ? router.push('/regis') : ''
+        },[])
 
-    useEffect(() => {
-        !item ? router.push('/regis') : ''
-    },[])
+        useEffect(  () => {
+            dispatch(getUser(item.id))
+        },[])
 
-     useEffect(  () => {
-         dispatch(getUser(item.id))
-    },[])
+        useEffect(() => {
+            dispatch(getFavorites(item.id))
+        },[])
 
-    // useEffect(() => {
-    //     dispatch(getFavorites(item.id))
-    // },[])
+        useEffect(() => {
+            dispatch(getProducts())
+        },[])
+    }
 
-    // useEffect(() => {
-    //     dispatch(getProducts())
-    // },[])
+
 
     return (
         <>

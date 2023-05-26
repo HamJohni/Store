@@ -4,9 +4,9 @@ import {getUser} from "@/redux/reducers/user";
 
 export const getProducts = createAsyncThunk(
     'products/getProducts',
-    async (_, {rejectedWithValue}) => {
+    async (filterName, {rejectedWithValue}) => {
         try {
-           const res = await axios(`http://localhost:4080/products`)
+           const res = await axios(`http://localhost:4080/products?name_like=${filterName}`)
 
             if (res.statusText !== 'OK') {
                 throw new Error("Произошла ошибка")
@@ -18,7 +18,8 @@ export const getProducts = createAsyncThunk(
     }
 )
 
-const initialState = {
+const initialState = 
+{
     products: [],
     error: '',
     status: ''
