@@ -5,8 +5,8 @@ import styles from '@/styles/Home.module.css'
 import Auth from '../components/Auth/Auth'
 import Regis from '../components/Regis/Regis';
 import Main from './Main/Main'
-import Card from './cart'
 import Index from './cart'
+import Catalog from './catalog'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,6 +23,7 @@ export default function Home() {
       {/* <Cart/> */}
       {/* <Regis/> */}
       {/* <Auth/> */}
+      {/* <Main/> */}
     </>
   )
 }

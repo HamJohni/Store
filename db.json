@@ -29,6 +29,12 @@
       "password": "$2a$10$/vzZMN/8IKuv59CmvMCZUuEJwuIlyWQx/HMibGxJg4xyGwMOrHVA6",
       "name": "baitur",
       "id": 6
+    },
+    {
+      "email": "baitur2@gmail.com",
+      "password": "$2a$10$bRjZzkDsoM7H2fGU47X0a.B.029jakf7F6po12/mKIPO1ZE1P4ppC",
+      "name": "baitur1",
+      "id": 7
     }
   ],
   "products": [
