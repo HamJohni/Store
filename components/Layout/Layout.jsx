@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
     }
 
     if(item === null){
-        router.push('/regis')
+        router.push('/regis') || router.push('/auth')
     }else{
         useEffect(() => {
             !item ? router.push('/regis') : ''
