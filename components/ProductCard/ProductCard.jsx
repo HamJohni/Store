@@ -19,6 +19,8 @@ const ProductCard = ({product}) => {
 
 	const {favorites} = useSelector(state => state.favorites)
 
+	const {user} = useSelector(state => state.user)
+
 	useEffect(() => {
 		favorites.map(item => {
 			if(item.id === product.id){
@@ -27,37 +29,10 @@ const ProductCard = ({product}) => {
 		})
 	},[])
 
-	// const favoritesItem = () => {
-	// 	setCheck((prev) => !prev)
-	//
-	// 	const item = {
-	// 		userId: user?.id,
-	// 		...product
-	// 	}
-	//
-	// 	axios.post(`http://localhost:4080/favorites`, item)
-	// 		.then((res) => {
-	// 			toast({
-	// 				title: 'Продукт добавлен',
-	// 				status: 'success',
-	// 				duration: 5000,
-	// 				isClosable: true,
-	// 				position: 'top-left',
-	// 			})
-	// 		}).catch((err) => {
-	// 		 toast({
-	// 			 title: "Вы уже добавили в избранное",
-	// 			 status: 'error',
-	// 			 duration: 5000,
-	// 			 isClosable: true,
-	// 			 position: 'top-left',
-	// 		 })
-	// 		})
-	// }
-
 	const checkItem = () => {
 		if(check){
-			axios.delete(`http://localhost:4080/favorites?id=${product.id}`)
+			setCheck(false)
+			axios.delete(`http://localhost:4080/favorites/${product.id}`)
 				.then((res) => {
 					toast({
 						title: 'Продукт успешно удален',
@@ -78,14 +53,37 @@ const ProductCard = ({product}) => {
 
 			})
 		}else{
+			setCheck((prev) => !prev)
+				const item = {
+					userId: user?.id,
+					...product
+				}
 
+				axios.post(`http://localhost:4080/favorites`, item)
+					.then((res) => {
+						toast({
+							title: 'Продукт добавлен',
+							status: 'success',
+							duration: 5000,
+							isClosable: true,
+							position: 'top-left',
+						})
+					}).catch((err) => {
+					 toast({
+						 title: "Вы уже добавили в избранное",
+						 status: 'error',
+						 duration: 5000,
+						 isClosable: true,
+						 position: 'top-left',
+					 })
+					})
 		}
 	}
 
 	return (
 		<>
 			<div className={s.product_card} key={product.id} >
-				<div className={s.product_card__heart} onClick={() => favoritesItem()}>
+				<div className={s.product_card__heart} onClick={() => checkItem()}>
 					{
 						check? <AiFillHeart fill="red" size={25}/> : <AiOutlineHeart fill="red" size={25}/>
 					}

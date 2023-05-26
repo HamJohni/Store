@@ -4,9 +4,14 @@ import CartCard from '@/components/CartCard/CartCard';
 import { carts } from '../../contants/Cart'
 import ProductCard from '@/components/ProductCard/ProductCard';
 import { products } from '@/contants/Products';
+import {useSelector} from "react-redux";
 
 
-const Cart = () => {
+const Index = () => {
+
+	const {products} = useSelector(state => state.products)
+
+
 	return (
 		<section className='container'>
 			<div className={s.card_section}>
@@ -16,7 +21,10 @@ const Cart = () => {
 					<h2>4 предмета</h2>
 				</div>
 				<div className={s.card_section__block}>
+
 					<CartCard carts={carts} />
+
+
 				</div>
 				<div className={s.card_section__order}>
 					<p>Итоговая стоимость: <span>69 960₽</span></p>
@@ -27,7 +35,7 @@ const Cart = () => {
 					<div className={s.card_section__products__block}>
 						{products.map((product) => {
 							return (
-								<ProductCard img={product.img} imgAlt={product.imgAlt} name={product.name} type={product.type} price={product.price} id={product.id} />
+								<ProductCard product={product} />
 							)
 						})}
 					</div>
@@ -37,4 +45,4 @@ const Cart = () => {
 	);
 };
 
-export default Cart;
+export default Index;
