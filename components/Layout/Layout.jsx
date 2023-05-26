@@ -6,6 +6,7 @@ import {useEffect} from "react";
 import {getProducts} from "@/redux/reducers/products";
 import {getFavorites} from "@/redux/reducers/favorites";
 import {useRouter} from "next/router";
+import {getBasket} from "@/redux/reducers/basket";
 
 const Layout = ({ children }) => {
 
@@ -20,7 +21,7 @@ const Layout = ({ children }) => {
     }
 
     if(item === null){
-        router.push('/regis') || router.push('/auth')
+        router.push('/regis')
     }else{
         useEffect(() => {
             !item ? router.push('/regis') : ''
@@ -32,6 +33,10 @@ const Layout = ({ children }) => {
 
         useEffect(() => {
             dispatch(getFavorites(item.id))
+        },[])
+
+        useEffect(() => {
+            dispatch(getBasket(item.id))
         },[])
 
         useEffect(() => {
