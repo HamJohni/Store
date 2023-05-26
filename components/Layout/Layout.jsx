@@ -8,21 +8,21 @@ import {getFavorites} from "@/redux/reducers/favorites";
 
 const Layout = ({ children }) => {
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
-    let item = {}
+    // let item = {}
 
-    if (typeof window !== 'undefined') {
-        item = JSON.parse(localStorage.getItem('user'))
-    }
+    // if (typeof window !== 'undefined') {
+    //     item = JSON.parse(localStorage.getItem('user'))
+    // }
 
-    useEffect(() => {
-        dispatch(getUser(item.id))
-    },[])
+    // useEffect(() => {
+    //     dispatch(getUser(item.id))
+    // },[])
 
-    useEffect(() => {
-        dispatch(getProducts())
-    },[])
+    // useEffect(() => {
+    //     dispatch(getProducts())
+    // },[])
 
     return (
         <>

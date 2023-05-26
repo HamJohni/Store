@@ -73,8 +73,25 @@ const Info = () => {
                         slidesPerView={4}
                         freeMode={true}
                         watchSlidesProgress={true}
+                        breakpoints={{
+                            570:{
+                                slidesPerView: 4,
+                            },
+                            509:{
+                                slidesPerView: 3,
+                            },
+                            321:{
+                                slidesPerView: 3,
+                            },
+                            320: {
+                                slidesPerView: 2,
+                            },
+                            200: {
+                                slidesPerView: 1,
+                            }
+                        }}
                         modules={[FreeMode, Navigation, Thumbs]}
-                        className="mySwiper"
+                        className="BottomSwiper"
                     >
                         <SwiperSlide>
                             <Image
@@ -117,7 +134,9 @@ const Info = () => {
 
                     <p className={i.info__right_mid_favourite}>
                         <FiHeart size={20}/>
-                        Добавить в желаемое
+                        <span>
+                           Добавить в желаемое  
+                        </span>
                     </p>
                 </div>
 

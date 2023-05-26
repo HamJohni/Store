@@ -55,7 +55,6 @@ const CardH = () => {
                         </span>
                         <input type="text" className={h.header__label_input} placeholder="Поиск"/>
                     </label>
-
                     <ul className={h.header__info}>
                         <li className={h.header__info_item}>
                             <HiOutlinePhone size={20}/>
@@ -80,6 +79,13 @@ const CardH = () => {
                         <FiUser size={23}/>
                     </div>
                 </nav>
+                <label className={h.header__label}>
+                        <span className={h.header__label_icon}>
+                            <BiSearch size={20}/>
+                        </span>
+                        <input type="text" className={h.header__label_input} placeholder="Поиск"/>
+                    </label>
+                
             </div>
         </header>
     );

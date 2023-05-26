@@ -159,6 +159,51 @@
       "name": "Сан-Паулу Velvet Brown",
       "type": "Барные стулья",
       "price": 25990
+    },
+    {
+      "id": 7,
+      "img": {
+        "src": "/_next/static/media/divan.0af0330b.png",
+        "height": 150,
+        "width": 200,
+        "blurDataURL": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdivan.0af0330b.png&w=8&q=70",
+        "blurWidth": 8,
+        "blurHeight": 6
+      },
+      "imgAlt": "divan_img",
+      "name": "Сан-Паулу Velvet Brown",
+      "type": "Барные стулья",
+      "price": "25 990₽"
+    },
+    {
+      "id": 6,
+      "img": {
+        "src": "/_next/static/media/divan.0af0330b.png",
+        "height": 150,
+        "width": 200,
+        "blurDataURL": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdivan.0af0330b.png&w=8&q=70",
+        "blurWidth": 8,
+        "blurHeight": 6
+      },
+      "imgAlt": "divan_img",
+      "name": "Сан-Паулу Velvet Brown",
+      "type": "Барные стулья",
+      "price": "25 990₽"
+    },
+    {
+      "id": 5,
+      "img": {
+        "src": "/_next/static/media/divan.0af0330b.png",
+        "height": 150,
+        "width": 200,
+        "blurDataURL": "/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdivan.0af0330b.png&w=8&q=70",
+        "blurWidth": 8,
+        "blurHeight": 6
+      },
+      "imgAlt": "divan_img",
+      "name": "Сан-Паулу Velvet Brown",
+      "type": "Барные стулья",
+      "price": "25 990₽"
     }
   ]
 }

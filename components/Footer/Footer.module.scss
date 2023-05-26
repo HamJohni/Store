@@ -55,6 +55,8 @@
     position: absolute;
     z-index: 5;
     right: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   &__subtitle{
@@ -105,5 +107,17 @@
 @media (max-width: 1000px) {
   .footer {
     padding: 20px 0;
+  }
+}
+
+@media screen and (max-width:660px) {
+  .footer__left_box{
+    display: none;
+  }
+  .footer__subtitle{
+    display: none;
+  }
+  .footer__left_items{
+    display: none;
   }
 }
