@@ -18,8 +18,11 @@ import {
     PopoverArrow,
     PopoverCloseButton, Button,
 } from '@chakra-ui/react'
+import {useRouter} from "next/router";
 
 const CardH = () => {
+
+    const router = useRouter()
 
     const {user} = useSelector(state => state.user)
 
@@ -82,7 +85,8 @@ const CardH = () => {
                         <Link href="/favorites">
                             <FiHeart size={23}/>
                         </Link>
-                        <div className={h.header__icons_notify}>
+
+                        <div className={h.header__icons_notify} onClick={() => router.push('/cart')}>
                             <span className={h.header__icons_notify_red}></span>
                             <BsBag size={23}/>
                         </div>
