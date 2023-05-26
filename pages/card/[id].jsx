@@ -1,11 +1,9 @@
 import Card from "@/components/Card/Card";
 
-const index = () => {
+export default function () {
     return(
         <>
             <Card/>
         </>
     )
 }
-
-export default index

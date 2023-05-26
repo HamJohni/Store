@@ -5,6 +5,7 @@ import { carts } from '../../contants/Cart'
 import ProductCard from '@/components/ProductCard/ProductCard';
 import { products } from '@/contants/Products';
 
+
 const Cart = () => {
 	return (
 		<section className='container'>

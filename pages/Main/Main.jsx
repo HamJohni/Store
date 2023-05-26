@@ -2,10 +2,17 @@ import s from './Main.module.scss'
 import MainSlider from '@/components/MainSlider/MainSlider';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import { mainSliders } from '@/contants/MainSliders';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getFavorites} from "@/redux/reducers/favorites";
+import {useEffect} from "react";
 
 const Main = () => {
+
+	const dispatch = useDispatch()
+
 	const {products} = useSelector(state => state.products)
+
+	const {user} = useSelector(state => state.user)
 
 	return (
 		<section className='container'>

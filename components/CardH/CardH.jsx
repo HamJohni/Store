@@ -9,6 +9,16 @@ import Link from "next/link";
 import Burger from "@/components/CardH/Burger/Burger";
 import {useSelector} from "react-redux";
 
+import {
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    PopoverArrow,
+    PopoverCloseButton, Button,
+} from '@chakra-ui/react'
+
 const CardH = () => {
 
     const {user} = useSelector(state => state.user)
@@ -77,7 +87,23 @@ const CardH = () => {
                             <span className={h.header__icons_notify_red}></span>
                             <BsBag size={23}/>
                         </div>
-                        <FiUser size={23}/>
+
+                        <Popover isLazy>
+                            <PopoverTrigger>
+                                <Button variant='link'><FiUser size={23}/></Button>
+                            </PopoverTrigger>
+
+                            <PopoverContent w="initial" >
+                                <PopoverHeader paddingRight="50px" fontWeight='semibold'>{user ? user.name : "Вы не вошли в аккаунт"}</PopoverHeader>
+                                <PopoverArrow />
+                                <PopoverCloseButton />
+                                <PopoverBody>
+                                    <Button colorScheme='teal' variant='solid'>
+                                        Log out
+                                    </Button>
+                                </PopoverBody>
+                            </PopoverContent>
+                        </Popover>
                     </div>
                 </nav>
             </div>

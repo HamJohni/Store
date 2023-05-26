@@ -1,6 +1,6 @@
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "@/redux/reducers/user";
 import {useEffect} from "react";
 import {getProducts} from "@/redux/reducers/products";
@@ -16,8 +16,12 @@ const Layout = ({ children }) => {
         item = JSON.parse(localStorage.getItem('user'))
     }
 
+     useEffect(  () => {
+         dispatch(getUser(item.id))
+    },[])
+
     useEffect(() => {
-        dispatch(getUser(item.id))
+        dispatch(getFavorites(item.id))
     },[])
 
     useEffect(() => {
