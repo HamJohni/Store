@@ -5,6 +5,7 @@ import {getUser} from "@/redux/reducers/user";
 import {useEffect} from "react";
 import {getProducts} from "@/redux/reducers/products";
 import {getFavorites} from "@/redux/reducers/favorites";
+import {useRouter} from "next/router";
 
 const Layout = ({ children }) => {
 
@@ -15,6 +16,12 @@ const Layout = ({ children }) => {
     if (typeof window !== 'undefined') {
         item = JSON.parse(localStorage.getItem('user'))
     }
+
+    const router = useRouter()
+
+    useEffect(() => {
+        !item ? router.push('/regis') : ''
+    },[])
 
      useEffect(  () => {
          dispatch(getUser(item.id))
