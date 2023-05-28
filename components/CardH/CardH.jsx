@@ -29,12 +29,40 @@ const CardH = () => {
 
     const { user } = useSelector(state => state.user)
 
-    const [filter, setFilter] = useState('');
-    const debounced = useDebounce(filter)
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getProducts(debounced))
-    }, [filter])
+    const {products} = useSelector(state => state.products)
+
+    
+
+    console.log(products);
+    // const [filter, setFilter] = useState('');
+    // const debounced = useDebounce(filter)
+    // const dispatch = useDispatch()
+    // useEffect(() => {
+    //     dispatch(getProducts(debounced))
+    // }, [filter])
+
+    
+    // export const getProducts = createAsyncThunk(
+    //     'products/getProducts',
+    //     async (filterName, {rejectedWithValue}) => {
+    //         try {
+    //            const res = await axios(`http://localhost:4080/products?name_like=${filterName}`)
+    
+    //             if (res.statusText !== 'OK') {
+    //                 throw new Error("Произошла ошибка")
+    //             }
+    //             return res.data
+    //         }catch (err){
+    //             console.log(rejectedWithValue(err.message))
+    //         }
+    //     }
+    // )
+    
+
+    const logoOut = () => {
+        localStorage.removeItem('user')
+        return router.push('/regis')
+    }
 
     return (
         <header className={h.header}>
@@ -77,8 +105,8 @@ const CardH = () => {
                             <BiSearch size={20} />
                         </span>
                         <input type="text" className={h.header__label_input}
-                            value={filter}
-                            onChange={(e) => setFilter(e.target.value)}
+                            // value={filter}
+                            // onChange={(e) => setFilter(e.target.value)}
                             placeholder="Поиск" />
                     </label>
                     <ul className={h.header__info}>
@@ -114,7 +142,7 @@ const CardH = () => {
                                 <PopoverArrow />
                                 <PopoverCloseButton />
                                 <PopoverBody>
-                                    <Button colorScheme='teal' variant='solid'>
+                                    <Button onClick={() => logoOut()} colorScheme='teal' variant='solid'>
                                         Log out
                                     </Button>
                                 </PopoverBody>

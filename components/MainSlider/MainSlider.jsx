@@ -12,8 +12,10 @@ import "swiper/css/navigation";
 
 import { Navigation } from "swiper";
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const MainSlider = ({ mainSliders }) => {
+	const router = useRouter()
 	return (
 		<>
 			<div className={s.main_slide}>
@@ -38,7 +40,7 @@ const MainSlider = ({ mainSliders }) => {
 								<div className={s.block}>
 									<h1>{slider.title}</h1>
 									<p>{slider.description}</p>
-									<button>СМОТРЕТЬ КАТАЛОГ</button>
+									<button onClick={() => router.push('/catalog')}>СМОТРЕТЬ КАТАЛОГ</button>
 								</div>
 							</SwiperSlide>
 						)

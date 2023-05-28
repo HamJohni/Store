@@ -46,7 +46,6 @@ const Form = () => {
                 router.push('/')
                 dispatch(increment(res.data))
 
-                console.log(res.data)
 
             }).catch((err) => {
                 toast({

@@ -39,7 +39,6 @@ const Info =  () => {
             }).catch((err) => alert(err.message))
     },[query])
 
-    console.log(product)
 
     const [rating] = useState(4)
     const [thumbsSwiper, setThumbsSwiper] = useState(null);

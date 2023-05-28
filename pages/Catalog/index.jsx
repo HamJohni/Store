@@ -3,18 +3,22 @@ import s from "./Catalog.module.scss";
 import FilterOfCatalog from "@/components/FilterOfCatalog/FilterOfCatalog";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import { Button, Dropdown, Modal } from "antd";
-import { useSelector } from "react-redux";
+// import { products } from "@/contants/Products";
+import { useDispatch, useSelector } from "react-redux";
 const Catalog = ({ }) => {
 
-  const { products } = useSelector(state => state.products)
-  const [filteredProducts, setFilteredProducts] = useState([products]);
-  const [priceRange, setPriceRange] = useState([0, 222990]);
-  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch()
+
+	const {products} = useSelector(state => state.products)
+
+  
   console.log(products);
+  const [filteredProducts, setFilteredProducts] = useState([products]);
+  const [priceRange, setPriceRange] = useState([0, 26990]);
+  const [open, setOpen] = useState(false);
+  // console.log(products);
 
   const handlePriceChange = (value) => {
-
-
     // Фильтрация продуктов по цене
     const filtered = products.filter(
       (product) =>
@@ -58,6 +62,7 @@ const Catalog = ({ }) => {
       label: <p>по популярности</p>,
     },
   ];
+
 
   console.log(filteredProducts);
 
