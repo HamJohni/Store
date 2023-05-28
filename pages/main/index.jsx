@@ -1,18 +1,12 @@
+import { mainSliders } from '@/contants/MainSliders';
 import s from './Main.module.scss'
+import {useSelector} from "react-redux";
+
 import MainSlider from '@/components/MainSlider/MainSlider';
 import ProductCard from '@/components/ProductCard/ProductCard';
-import { mainSliders } from '@/contants/MainSliders';
-import {useDispatch, useSelector} from "react-redux";
-import {getFavorites} from "@/redux/reducers/favorites";
-import {useEffect} from "react";
 
-const Main = () => {
-
-	const dispatch = useDispatch()
-
+const Index = () => {
 	const {products} = useSelector(state => state.products)
-
-	const {user} = useSelector(state => state.user)
 
 	return (
 		<section className='container'>
@@ -35,4 +29,4 @@ const Main = () => {
 	);
 };
 
-export default Main;
+export default Index;

@@ -1,4 +1,4 @@
-import h from "@/components/CardH/CardH.module.scss";
+import h from "@/components/Header/Header.module.scss";
 import {BiSearch} from "react-icons/bi";
 
 const Search = () => {

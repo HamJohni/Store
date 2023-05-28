@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react'
 import {RxHamburgerMenu} from "react-icons/rx";
 import Link from "next/link";
-import h from "@/components/CardH/CardH.module.scss";
+import h from "@/components/Header/Header.module.scss";
 
 const Burger = () => {
 

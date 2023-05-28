@@ -2,11 +2,13 @@ import f from './Favorites.module.scss'
 import Links from "@/components/Links/Links";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {getFavorites} from "@/redux/reducers/favorites";
 
 
 const Favorites = () => {
+
+    let count = 1
 
     let item = {}
 
@@ -19,8 +21,12 @@ const Favorites = () => {
     const {favorites} = useSelector(state => state.favorites)
 
     useEffect(() => {
-        dispatch(getFavorites(item.id))
-    },[favorites])
+        dispatch(getFavorites(item?.id))
+    },[])
+
+    useEffect(() => {
+        dispatch(getFavorites(item?.id))
+    },[])
 
     return(
         <section className={f.fav}>
@@ -32,7 +38,7 @@ const Favorites = () => {
                 <div className={f.fav__content}>
                     {
                         favorites.map(item => (
-                            <ProductCard key={item.id} product={item}/>
+                            <ProductCard count={count} key={item.id} product={item}/>
                         ))
                     }
                 </div>

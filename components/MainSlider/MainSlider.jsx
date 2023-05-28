@@ -1,18 +1,14 @@
 import React from 'react';
-import s from './MainSlider.module.scss'
-import mainImg from '../../public/main.png'
-
-import SwiperCore, { Autoplay } from "swiper";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-
-SwiperCore.use([Autoplay]);
-import "swiper/css";
-import "swiper/css/navigation";
-
-import { Navigation } from "swiper";
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import s from './MainSlider.module.scss'
+
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper";
+import SwiperCore, { Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+SwiperCore.use([Autoplay]);
 
 const MainSlider = ({ mainSliders }) => {
 	const router = useRouter()
@@ -46,9 +42,6 @@ const MainSlider = ({ mainSliders }) => {
 						)
 					})}
 				</Swiper>
-				{/* <div className={s.mobile_block}>
-					
-				</div> */}
 			</div>
 		</>
 

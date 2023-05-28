@@ -1,12 +1,13 @@
-import '@/styles/globals.css'
-import { ChakraProvider } from '@chakra-ui/react'
-import '../styles/MainSlider.css'
-import '@/styles/FilterOfCatalog.css'
 import Layout from "@/components/Layout/Layout";
-import '../styles/CardSlider.scss'
+
 import {Provider} from "react-redux";
 import store from "@/redux/store";
+import { ChakraProvider } from '@chakra-ui/react'
 
+import '@/styles/globals.css'
+import '../styles/MainSlider.css'
+import '../styles/CardSlider.scss'
+import '@/styles/FilterOfCatalog.css'
 
 export default function App({ Component, pageProps }) {
     return (

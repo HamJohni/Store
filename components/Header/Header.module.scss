@@ -92,6 +92,11 @@
       position: relative;
       cursor: pointer;
 
+      &:hover{
+        transition: .5s;
+        transform: scale(1.05);
+      }
+
       &_red{
         position: absolute;
         top: 2px;

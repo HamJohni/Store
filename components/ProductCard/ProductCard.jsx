@@ -7,15 +7,14 @@ import { AiFillHeart } from "react-icons/ai";
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { getFavorites } from "@/redux/reducers/favorites";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product,count }) => {
+
+	const [check, setCheck] = useState(false)
 
 	const router = useRouter()
 
 	const toast = useToast()
-
-	const [check, setCheck] = useState(false)
 
 	const { favorites } = useSelector(state => state.favorites)
 
