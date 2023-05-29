@@ -2,13 +2,13 @@ import f from './Favorites.module.scss'
 import Links from "@/components/Links/Links";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {getFavorites} from "@/redux/reducers/favorites";
 import {Spinner} from "@chakra-ui/react";
 
 
 const Favorites = () => {
-
+    const [state, setState] = useState([])
     let item = {}
 
     if (typeof window !== 'undefined') {
@@ -21,11 +21,8 @@ const Favorites = () => {
 
     useEffect(() => {
         dispatch(getFavorites(item?.id))
-    },[])
+    },[state])
 
-    useEffect(() => {
-        dispatch(getFavorites(item?.id))
-    },[favorites])
 
     return(
         <section className={f.fav}>
@@ -50,9 +47,9 @@ const Favorites = () => {
                         error ? <span className="span">Отсутвует подключения к интернету...</span> : ''
                     }
                     {
-                        favorites?
+                        favorites.length !== 0 ?
                             favorites.map(item => (
-                                <ProductCard key={item.id} product={item}/>
+                                <ProductCard key={item.id} setState={setState} product={item}/>
                             )) : <h1 className="not">Нет товаров в избранное</h1>
                     }
                 </div>

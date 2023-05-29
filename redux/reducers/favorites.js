@@ -36,9 +36,8 @@ const favoritesSlice = createSlice({
             state.error = true
         },
         [getFavorites.fulfilled]: (state, action) => {
-            state.loading = true
-            state.favorites = action.payload
             state.loading = false
+            state.favorites = action.payload
         }
     }
 })

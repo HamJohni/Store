@@ -10,7 +10,7 @@ import {useEffect, useRef, useState} from "react";
 import {checking} from "@/redux/reducers/favorites";
 import NoAcc from "@/components/NoAcc/NoAcc";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, setState }) => {
 
 	const [check, setCheck] = useState(false)
 	const router = useRouter()
@@ -32,9 +32,9 @@ const ProductCard = ({ product }) => {
 	const checkItem = () => {
 		if (check) {
 			setCheck(false)
-			localStorage.removeItem("favorites")
 			axios.delete(`http://localhost:4080/favorites/${product.id}`)
 				.then((res) => {
+					setState([])
 					toast({
 						title: 'Продукт успешно удален',
 						status: 'success',

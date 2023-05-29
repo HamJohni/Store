@@ -3,14 +3,12 @@ import s from "./Catalog.module.scss";
 import FilterOfCatalog from "@/components/FilterOfCatalog/FilterOfCatalog";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import { Button, Dropdown, Modal } from "antd";
-// import { products } from "@/contants/Products";
 import { useDispatch, useSelector } from "react-redux";
 const Catalog = ({ }) => {
 
   const dispatch = useDispatch()
 
-	const {products} = useSelector(state => state.products)
-
+  const {products} = useSelector(state => state.products)
   
   console.log(products);
   const [filteredProducts, setFilteredProducts] = useState([products]);

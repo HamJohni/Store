@@ -4,10 +4,14 @@ import CartCard from '@/components/CartCard/CartCard';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import { useDispatch, useSelector } from "react-redux";
 import { getBasket } from '@/redux/reducers/basket';
+import {Spinner, useToast} from "@chakra-ui/react";
+import axios from "axios";
 
 const Index = () => {
 
     let item = {}
+
+    const toast = useToast()
 
     if (typeof window !== 'undefined') {
         item = JSON.parse(localStorage.getItem('user'))
@@ -15,7 +19,7 @@ const Index = () => {
 
     const dispatch = useDispatch()
 
-    const { basket } = useSelector(state => state.basket)
+    const { basket, error, loading } = useSelector(state => state.basket)
 
     useEffect(() => {
         dispatch(getBasket(item.id))
@@ -48,6 +52,7 @@ const Index = () => {
 
     const totalPrice = basket.reduce((accumulator, item) => accumulator + item.price, 0);
     const totalCount = basket.reduce((accumulator, item) => accumulator + item.count, 0);
+
     return (
         <section className='container'>
             <div className={s.card_section}>
@@ -57,12 +62,25 @@ const Index = () => {
                     <h2>{totalCount} предмета</h2>
                 </div>
                 <div className={s.card_section__block}>
-                    {basket.length === 0 ? (
-                            <h6>Нету товаров в корзине</h6>
-                        ) :
+                    {
+                        loading?
+                            <Spinner
+                                mt={5}
+                                thickness='7px'
+                                speed='0.5s'
+                                emptyColor='gray.200'
+                                color='blue.500'
+                                size='xl'
+                            /> : ''
+                    }
+                    {
+                        error ? <span className="span">Отсутвует подключения к интернету...</span> : ''
+                    }
+                    {basket ?
                         basket?.map(item => (
                             <CartCard item={item} key={item.id} />
-                        ))
+                        )) :
+                            <h6>Нету товаров в корзине</h6>
                     }
                 </div>
                 <div className={s.card_section__order}>

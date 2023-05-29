@@ -19,17 +19,28 @@ import {
     PopoverCloseButton, Button, useDisclosure,
 } from '@chakra-ui/react'
 import { useRouter } from "next/router";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import NoAcc from "@/components/NoAcc/NoAcc";
 import {logout} from "@/redux/reducers/user";
+import {useDebounce} from "@/hooks/debounce";
+import {getProducts} from "@/redux/reducers/products";
 
 const Header = () => {
 
     const router = useRouter()
-
     const { user } = useSelector(state => state.user)
-
+    const [name,setName] = useState('')
     const dispatch = useDispatch()
+
+    const debounced = useDebounce(name)
+
+    useEffect(() => {
+        dispatch(getProducts(debounced))
+    },[debounced])
+
+    useEffect(() => {
+        setName('')
+    },[router])
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = useRef()
@@ -44,7 +55,6 @@ const Header = () => {
     const logoOut = () => {
         localStorage.removeItem('user')
         dispatch(logout())
-        router.push('/register')
     }
 
     return (
