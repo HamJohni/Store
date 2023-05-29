@@ -2,12 +2,13 @@ import f from './Favorites.module.scss'
 import Links from "@/components/Links/Links";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {getFavorites} from "@/redux/reducers/favorites";
+import {Spinner} from "@chakra-ui/react";
 
 
 const Favorites = () => {
-
+    const [state, setState] = useState([])
     let item = {}
 
     if (typeof window !== 'undefined') {
@@ -16,11 +17,12 @@ const Favorites = () => {
 
     const dispatch = useDispatch()
 
-    const {favorites} = useSelector(state => state.favorites)
+    const {favorites, loading, error } = useSelector(state => state.favorites)
 
     useEffect(() => {
-        dispatch(getFavorites(item.id))
-    },[favorites])
+        dispatch(getFavorites(item?.id))
+    },[state])
+
 
     return(
         <section className={f.fav}>
@@ -31,9 +33,24 @@ const Favorites = () => {
                 </p>
                 <div className={f.fav__content}>
                     {
-                        favorites.map(item => (
-                            <ProductCard key={item.id} product={item}/>
-                        ))
+                        loading?
+                            <Spinner
+                                mt={5}
+                                thickness='7px'
+                                speed='0.5s'
+                                emptyColor='gray.200'
+                                color='blue.500'
+                                size='xl'
+                            /> : ''
+                    }
+                    {
+                        error ? <span className="span">Отсутвует подключения к интернету...</span> : ''
+                    }
+                    {
+                        favorites.length !== 0 ?
+                            favorites.map(item => (
+                                <ProductCard key={item.id} setState={setState} product={item}/>
+                            )) : <h1 className="not">Нет товаров в избранное</h1>
                     }
                 </div>
             </div>

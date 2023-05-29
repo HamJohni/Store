@@ -19,24 +19,26 @@ export const getBasket = createAsyncThunk(
 
 const initialState = {
     basket: [],
-    error: '',
-    status: ''
+    error: false,
+    loading: false
 }
 
 const basketSlice = createSlice({
     name: "basket",
     initialState,
     extraReducers: {
-        [getBasket.rejected]: (state, action) => {
-            state.error = action.payload
-            state.status = 'error'
-        },
         [getBasket.pending]: (state) => {
-            state.status = 'loading'
+            state.loading = true
+            state.error = false
+        },
+        [getBasket.rejected]: (state, action) => {
+            state.error = true
+            state.loading = false
         },
         [getBasket.fulfilled]: (state, action) => {
-            state.status = true
+            state.loading = true
             state.basket = action.payload
+            state.loading = false
         }
     }
 })

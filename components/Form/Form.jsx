@@ -1,20 +1,17 @@
-import s from "@/components/Regis/Regis.module.scss";
 import {useRouter} from "next/router";
-import {useDispatch, useSelector} from "react-redux";
+import s from "@/components/Form/Form.module.scss";
+
+import {increment} from "@/redux/reducers/user";
+import {useDispatch} from "react-redux";
+
+import axios from "axios";
 import {useToast} from "@chakra-ui/react";
 import {useForm} from "react-hook-form";
-import { v4 as uuidv4 } from 'uuid';
-import axios from "axios";
-import {increment} from "@/redux/reducers/user";
-import {useEffect} from "react";
 
 const Form = () => {
-
-    const {user} = useSelector(state => state.user)
-
+    const toast = useToast()
     const {pathname} = useRouter()
     const router = useRouter()
-    const toast = useToast()
     const dispatch = useDispatch()
 
     const {register, reset, getValues, handleSubmit,
@@ -22,10 +19,10 @@ const Form = () => {
 
     const submit = (data) => {
         const {confirm, ...other} = data
-        pathname === '/regis' ? regUser(other) : logUser(other)
+        pathname === '/register' ? regUser(other) : logUser(other)
     }
 
-    // ---------------------------------------------------
+    // register ---------------------------------------------------
     const regUser = (data) => {
         axios.post('http://localhost:4080/register', {...data})
             .then((res) => {
@@ -44,13 +41,12 @@ const Form = () => {
 
                 reset()
                 router.push('/')
-                dispatch(increment(res.data))
+                dispatch(increment(res.data.user))
 
 
             }).catch((err) => {
                 toast({
-                    title: "Что то пошло не так...",
-                    description: err.message,
+                    title: "Пользователь уже существует",
                     status: 'error',
                     duration: 5000,
                     isClosable: true,
@@ -59,14 +55,14 @@ const Form = () => {
         })
     }
 
-    // ----------------------------------------------------
+    // login ----------------------------------------------------
     const logUser = (data) => {
         axios.post('http://localhost:4080/login', {...data})
             .then((res) => {
                 toast({
                     title: 'Вы вошли в аккаунт',
                     status: 'success',
-                    duration: 5000,
+                    duration: 3000,
                     isClosable: true,
                     position: 'top-left',
                 })
@@ -76,38 +72,29 @@ const Form = () => {
                     ...res.data.user
                 }))
 
-                dispatch(increment(res.data))
+                dispatch(increment(res.data.user))
                 reset()
                 router.push('/')
             }).catch((err) => {
             toast({
-                title: "Что то пошло не так...",
-                description: err.message,
+                title: "Не правильно введен логин или пароль",
                 status: 'error',
-                duration: 5000,
+                duration: 3000,
                 isClosable: true,
                 position: 'top-left',
             })
         })
     }
 
-    useEffect(() => {
-        if(user){
-            router.push('/')
-        }
-    },[])
-
     return(
         <form noValidate onSubmit={handleSubmit(submit)}>
-
             {
-                pathname === '/regis' ? <h1>Регистрация</h1> : <h1>Войти</h1>
+                pathname === '/register' ? <h1>Регистрация</h1> : <h1>Войти</h1>
             }
-
             <div className={s.inputs}>
 
                 {
-                    pathname === '/regis' ?
+                    pathname === '/register' ?
                         <>
                             <input type="text" placeholder="Имя..."
                                    {...register('name', {
@@ -155,9 +142,8 @@ const Form = () => {
                 />
                 <span className={s.errors}>{errors.password && errors.password.message}</span>
 
-
                 {
-                    pathname === '/regis' ?
+                    pathname === '/register' ?
                         <>
                             <input type="password" placeholder="Подтвердите пароль..."
                                    {...register('confirm', {
@@ -180,19 +166,19 @@ const Form = () => {
             <div className={s.btns}>
 
                 {
-                    pathname === '/regis' ?
+                    pathname === '/register' ?
                         <>
                             <button type="submit" className={s.auth}>
                                 Зарегистрироваться
                             </button>
-                            <button className={s.regis} type="button" onClick={() => router.push('/auth')}>Уже есть аккаунт</button>
+                            <button className={s.regis} type="button" onClick={() => router.push('/login')}>Уже есть аккаунт</button>
                         </> :
 
                         <>
                             <button type="submit" className={s.auth}>
                                 Войти
                             </button>
-                            <button className={s.regis} type="button" onClick={() => router.push('/regis')}>Еще нет аккаунта ?</button>
+                            <button className={s.regis} type="button" onClick={() => router.push('/register')}>Еще нет аккаунта ?</button>
                         </>
                 }
             </div>

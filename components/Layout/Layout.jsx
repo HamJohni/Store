@@ -1,52 +1,33 @@
+import { useEffect } from "react";
+
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
 import { getUser } from "@/redux/reducers/user";
-import { useEffect } from "react";
 import { getProducts } from "@/redux/reducers/products";
 import { getFavorites } from "@/redux/reducers/favorites";
-import { useRouter } from "next/router";
 import { getBasket } from "@/redux/reducers/basket";
 
+
 const Layout = ({ children }) => {
-
-    const router = useRouter()
-
+    let user = {}
     const dispatch = useDispatch()
 
-    let item = {}
-
     if (typeof window !== 'undefined') {
-        item = JSON.parse(localStorage.getItem('user'))
+        user = JSON.parse(localStorage.getItem('user'))
     }
 
-    if (item === null) {
-        router.push('/regis')
-    } else {
-        useEffect(() => {
-            !item ? router.push('/regis') : ''
-        }, [])
-    }
     useEffect(() => {
-        dispatch(getUser(item.id))
-    }, [])
-
-    useEffect(() => {
-        dispatch(getFavorites(item.id))
-    }, [])
-
-    useEffect(() => {
-        dispatch(getBasket(item.id))
-    }, [])
-
-    useEffect(() => {
+        dispatch(getUser(user?.id))
+        dispatch(getFavorites(user?.id))
+        dispatch(getBasket(user?.id))
         dispatch(getProducts())
     }, [])
 
-
     return (
         <>
-            <Header />
+            <Header/>
             {children}
             <Footer />
         </>

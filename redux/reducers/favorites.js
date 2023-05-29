@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import {useSelector} from "react-redux";
 
 export const getFavorites = createAsyncThunk(
     'favorites/getFavorites',
@@ -20,23 +19,24 @@ export const getFavorites = createAsyncThunk(
 
 const initialState = {
     favorites: [],
-    error: '',
-    status: ''
+    error: false,
+    loading: false
 }
 
 const favoritesSlice = createSlice({
     name: "favorites",
     initialState,
     extraReducers: {
-        [getFavorites.rejected]: (state, action) => {
-            state.error = action.payload
-            state.status = 'error'
-        },
         [getFavorites.pending]: (state) => {
-            state.status = 'loading'
+            state.loading = true
+            state.error = false
+        },
+        [getFavorites.rejected]: (state) => {
+            state.loading = false
+            state.error = true
         },
         [getFavorites.fulfilled]: (state, action) => {
-            state.status = true
+            state.loading = false
             state.favorites = action.payload
         }
     }
