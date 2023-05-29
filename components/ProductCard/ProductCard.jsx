@@ -44,9 +44,8 @@ const ProductCard = ({ product, setState }) => {
 					})
 				}).catch((err) => {
 					toast({
-						title: 'Продукт не удалось удалить',
-						description: err.message,
-						status: 'success',
+						title: 'Продукт удален',
+						status: 'error',
 						duration: 5000,
 						isClosable: true,
 						position: 'top-left',
@@ -102,7 +101,7 @@ const ProductCard = ({ product, setState }) => {
 			})
 		}).catch((err) => {
 			toast({
-				title: "Вы уже добавили в избранное",
+				title: "Товар уже в корзине",
 				status: 'error',
 				duration: 5000,
 				isClosable: true,

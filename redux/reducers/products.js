@@ -36,9 +36,9 @@ const productsSlice = createSlice({
             state.loading = false
         },
         [getProducts.fulfilled]: (state, action) => {
-            state.loading = true
             state.products = action.payload
             state.loading = false
+            state.error= false
         }
     }
 })
