@@ -34,12 +34,14 @@ const CardH = () => {
     
 
     console.log(products);
-    // const [filter, setFilter] = useState('');
-    // const debounced = useDebounce(filter)
-    // const dispatch = useDispatch()
-    // useEffect(() => {
-    //     dispatch(getProducts(debounced))
-    // }, [filter])
+    const [filter, setFilter] = useState('');
+    const debounced = useDebounce(filter)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (filter !== '') {
+          dispatch(getProducts(debounced));
+        }
+      }, [filter, debounced, dispatch]);    
 
     
     // export const getProducts = createAsyncThunk(
@@ -58,6 +60,7 @@ const CardH = () => {
     //     }
     // )
     
+    const {pathname} = useRouter()
 
     const logoOut = () => {
         localStorage.removeItem('user')
@@ -99,16 +102,20 @@ const CardH = () => {
                         <li className={h.header__list_item}>О нас</li>
                         <li className={h.header__list_item}>Контакты</li>
                     </ul>
-
-                    <label className={h.header__label}>
+                    {pathname === '/' ? 
+                    (
+                      <label className={h.header__label}>
                         <span className={h.header__label_icon}>
                             <BiSearch size={20} />
                         </span>
                         <input type="text" className={h.header__label_input}
-                            // value={filter}
-                            // onChange={(e) => setFilter(e.target.value)}
+                            value={filter}
+                            onChange={(e) => setFilter(e.target.value)}
                             placeholder="Поиск" />
-                    </label>
+                    </label>  
+                    ) : ""
+                }
+                    
                     <ul className={h.header__info}>
                         <li className={h.header__info_item}>
                             <HiOutlinePhone size={20} />
