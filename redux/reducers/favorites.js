@@ -19,27 +19,28 @@ export const getFavorites = createAsyncThunk(
 
 const initialState = {
     favorites: [],
-    error: '',
-    status: ''
+    error: false,
+    loading: false
 }
 
 const favoritesSlice = createSlice({
     name: "favorites",
     initialState,
     extraReducers: {
-        [getFavorites.rejected]: (state, action) => {
-            state.error = action.payload
-            state.status = 'error'
-        },
         [getFavorites.pending]: (state) => {
-            state.status = 'loading'
+            state.loading = true
+            state.error = false
+        },
+        [getFavorites.rejected]: (state) => {
+            state.loading = false
+            state.error = true
         },
         [getFavorites.fulfilled]: (state, action) => {
-            state.status = true
+            state.loading = true
             state.favorites = action.payload
+            state.loading = false
         }
     }
 })
 
-export const {checking} = favoritesSlice.actions
 export default favoritesSlice.reducer

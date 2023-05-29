@@ -30,7 +30,7 @@ const Index = () => {
 								/> : ''
 						}
 						{
-							error ? <span>Отсутвует подключения к интернету...</span> : ''
+							error ? <span className="span">Отсутвует подключения к интернету...</span> : ''
 						}
 						{products.map((product) => {
 							return (

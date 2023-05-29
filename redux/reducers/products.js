@@ -29,6 +29,7 @@ const productsSlice = createSlice({
     extraReducers: {
         [getProducts.pending]: (state) => {
             state.loading = true
+            state.error = false
         },
         [getProducts.rejected]: (state) => {
             state.error = true
