@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import {useSelector} from "react-redux";
 
 export const getFavorites = createAsyncThunk(
     'favorites/getFavorites',
@@ -42,4 +41,5 @@ const favoritesSlice = createSlice({
     }
 })
 
+export const {checking} = favoritesSlice.actions
 export default favoritesSlice.reducer

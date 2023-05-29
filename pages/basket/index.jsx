@@ -4,12 +4,9 @@ import CartCard from '@/components/CartCard/CartCard';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import { useDispatch, useSelector } from "react-redux";
 import { getBasket } from '@/redux/reducers/basket';
-import axios from "axios";
-import {useToast} from "@chakra-ui/react";
 
 const Index = () => {
 
-    const toast = useToast()
     let item = {}
 
     if (typeof window !== 'undefined') {
@@ -22,7 +19,8 @@ const Index = () => {
 
     useEffect(() => {
         dispatch(getBasket(item.id))
-    }, [])
+    }, [basket])
+
 
     const { products } = useSelector(state => state.products)
 
@@ -50,7 +48,6 @@ const Index = () => {
 
     const totalPrice = basket.reduce((accumulator, item) => accumulator + item.price, 0);
     const totalCount = basket.reduce((accumulator, item) => accumulator + item.count, 0);
-
     return (
         <section className='container'>
             <div className={s.card_section}>

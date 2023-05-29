@@ -4,16 +4,16 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
-import { useToast } from "@chakra-ui/react";
+import {useDisclosure, useToast} from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import {useEffect, useRef, useState} from "react";
+import {checking} from "@/redux/reducers/favorites";
+import NoAcc from "@/components/NoAcc/NoAcc";
 
-const ProductCard = ({ product,count }) => {
+const ProductCard = ({ product }) => {
 
 	const [check, setCheck] = useState(false)
-
 	const router = useRouter()
-
 	const toast = useToast()
 
 	const { favorites } = useSelector(state => state.favorites)
@@ -28,9 +28,11 @@ const ProductCard = ({ product,count }) => {
 		})
 	}, [])
 
+
 	const checkItem = () => {
 		if (check) {
 			setCheck(false)
+			localStorage.removeItem("favorites")
 			axios.delete(`http://localhost:4080/favorites/${product.id}`)
 				.then((res) => {
 					toast({
@@ -52,6 +54,11 @@ const ProductCard = ({ product,count }) => {
 
 				})
 		} else {
+
+			localStorage.setItem("favorites", JSON.stringify({
+				...product
+			}))
+
 			setCheck((prev) => !prev)
 			const item = {
 				userId: user?.id,
@@ -104,10 +111,21 @@ const ProductCard = ({ product,count }) => {
 		})
 	}
 
+	const { isOpen, onOpen, onClose } = useDisclosure()
+	const cancelRef = useRef()
+
+	let func = {
+		isOpen,
+		onOpen,
+		onClose,
+		cancelRef
+	}
+
 	return (
 		<>
 			<div className={s.product_card} key={product.id} >
-				<div className={s.product_card__heart} onClick={() => checkItem()}>
+				<div className={s.product_card__heart} onClick={user? () => checkItem() : onOpen}>
+					<NoAcc func={func}/>
 					{
 						check ? <AiFillHeart fill="red" size={25} /> : <AiOutlineHeart fill="red" size={25} />
 					}
@@ -120,7 +138,8 @@ const ProductCard = ({ product,count }) => {
 					<h2>{product.type}</h2>
 					<p>{product.price}</p>
 					<div className={s.product_card_description_cart_btn}>
-						<button onClick={() => addCard()}>Добавить в корзину</button>
+						<button onClick={user ? () => addCard() : onOpen}>Добавить в корзину</button>
+						<NoAcc func={func}/>
 					</div>
 				</div>
 			</div>

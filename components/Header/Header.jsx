@@ -26,7 +26,9 @@ import {logout} from "@/redux/reducers/user";
 const Header = () => {
 
     const router = useRouter()
+
     const { user } = useSelector(state => state.user)
+
     const dispatch = useDispatch()
 
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -41,8 +43,8 @@ const Header = () => {
 
     const logoOut = () => {
         localStorage.removeItem('user')
-        dispatch(logout)
-        return router.push('/register')
+        dispatch(logout())
+        router.push('/register')
     }
 
     return (
@@ -101,15 +103,15 @@ const Header = () => {
                     </ul>
 
                     <div className={h.header__icons}>
-                        <div className={h.header__icons_notify}  onClick={() => router.push('/favorites')} >
+                        <div className={h.header__icons_notify}  onClick={user? () => router.push('/favorites'): onOpen } >
                             <NoAcc func={func}/>
                             <FiHeart size={23}/>
                         </div>
 
-                        <div className={h.header__icons_notify} >
+                        <div className={h.header__icons_notify} onClick={user? () => router.push('/basket'): onOpen }  >
                             <NoAcc func={func}/>
                             <span className={h.header__icons_notify_red}></span>
-                            <BsBag size={23} onClick={onOpen} />
+                            <BsBag size={23} />
                         </div>
 
                         <Popover isLazy>
@@ -118,7 +120,7 @@ const Header = () => {
                             </PopoverTrigger>
 
                             <PopoverContent w="initial" >
-                                <PopoverHeader paddingRight="50px" fontWeight='semibold'>{user ? user.name : "Вы не авторизованы"}</PopoverHeader>
+                                <PopoverHeader paddingRight="50px" fontWeight='semibold'>{user ? user?.name : "Вы не авторизованы"}</PopoverHeader>
                                 <PopoverArrow />
                                 <PopoverCloseButton />
                                 <PopoverBody>

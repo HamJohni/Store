@@ -41,7 +41,7 @@ const Form = () => {
 
                 reset()
                 router.push('/')
-                dispatch(increment(res.data))
+                dispatch(increment(res.data.user))
 
 
             }).catch((err) => {
@@ -72,7 +72,7 @@ const Form = () => {
                     ...res.data.user
                 }))
 
-                dispatch(increment(res.data))
+                dispatch(increment(res.data.user))
                 reset()
                 router.push('/')
             }).catch((err) => {

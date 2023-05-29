@@ -4,9 +4,10 @@ import {useSelector} from "react-redux";
 
 import MainSlider from '@/components/MainSlider/MainSlider';
 import ProductCard from '@/components/ProductCard/ProductCard';
+import {Spinner} from "@chakra-ui/react";
 
 const Index = () => {
-	const {products} = useSelector(state => state.products)
+	const {products, loading, error} = useSelector(state => state.products)
 
 	return (
 		<section className='container'>
@@ -17,6 +18,20 @@ const Index = () => {
 				<div className={s.main_section__block__products}>
 					<h2>Хиты продаж</h2>
 					<div className={s.main_section__block__products__block}>
+						{
+							loading?
+								<Spinner
+									mt={5}
+									thickness='7px'
+									speed='0.5s'
+									emptyColor='gray.200'
+									color='blue.500'
+									size='xl'
+								/> : ''
+						}
+						{
+							error ? <span>Отсутвует подключения к интернету...</span> : ''
+						}
 						{products.map((product) => {
 							return (
 								<ProductCard product={product}/>
