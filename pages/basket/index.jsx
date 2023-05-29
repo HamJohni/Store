@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import s from '../basket/Cart.module.scss';
 import CartCard from '@/components/CartCard/CartCard';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import { useDispatch, useSelector } from "react-redux";
 import { getBasket } from '@/redux/reducers/basket';
-import {Spinner, useToast} from "@chakra-ui/react";
-import axios from "axios";
+import {Spinner} from "@chakra-ui/react";
 
 const Index = () => {
 
-    let item = {}
+    const [state,setState] = useState([])
 
-    const toast = useToast()
+    let item = {}
 
     if (typeof window !== 'undefined') {
         item = JSON.parse(localStorage.getItem('user'))
@@ -23,32 +22,9 @@ const Index = () => {
 
     useEffect(() => {
         dispatch(getBasket(item.id))
-    }, [basket])
-
+    }, [state])
 
     const { products } = useSelector(state => state.products)
-
-    const deleteProduct = () => {
-        axios.delete(`http://localhost:4080/basket/${product.id}`, item)
-            .then((res) => {
-                toast({
-                    title: 'Продукт успешно удален',
-                    status: 'success',
-                    duration: 5000,
-                    isClosable: true,
-                    position: 'top-left',
-                })
-            }).catch((err) => {
-            toast({
-                title: 'Продукт не удалось удалить',
-                description: err.message,
-                status: 'success',
-                duration: 5000,
-                isClosable: true,
-                position: 'top-left',
-            })
-        })
-    }
 
     const totalPrice = basket.reduce((accumulator, item) => accumulator + item.price, 0);
     const totalCount = basket.reduce((accumulator, item) => accumulator + item.count, 0);
@@ -76,9 +52,9 @@ const Index = () => {
                     {
                         error ? <span className="span">Отсутвует подключения к интернету...</span> : ''
                     }
-                    {basket ?
+                    {basket.length !== 0 ?
                         basket?.map(item => (
-                            <CartCard item={item} key={item.id} />
+                            <CartCard setState={setState} item={item} key={item.id} />
                         )) :
                             <h6>Нету товаров в корзине</h6>
                     }

@@ -1,22 +1,19 @@
-import React, {useState} from 'react';
 import s from './CartCard.module.scss'
-import minidivan from '../../public/minidivan.png'
 import Image from 'next/image';
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react';
 
-const CartCard = ({item}) => {
+const CartCard = ({item,setState}) => {
 
     const toast = useToast()
-
-
 
     const deleteProduct = () => {
 		axios.delete(`http://localhost:4080/basket/${item.id}`, item)
 			.then((res) => {
+                setState([])
 				toast({
 					title: 'Продукт успешно удален',
-					status: 'success',
+					status: 'error',
 					duration: 5000,
 					isClosable: true,
 					position: 'top-left',
