@@ -16,6 +16,9 @@ const Catalog = () => {
   const [open, setOpen] = useState(false);
   const [sortOrder, setSortOrder] = useState("default");
 
+  \
+
+  
   const handlePriceChange = (value) => {
     const filtered = products.filter(
       (product) =>
@@ -29,6 +32,9 @@ const Catalog = () => {
     setPriceRange(value);
   };
 
+
+
+
   const sortProducts = (products, sortOrder) => {
     const sorted = [...products];
 
@@ -39,6 +45,8 @@ const Catalog = () => {
     }
     return sorted;
   };
+
+
 
 
   const handleSortChange = (value) => {
@@ -96,6 +104,7 @@ const Catalog = () => {
   console.log(filteredProducts);
 
   return (
+
     <section className={s.Catalog}>
       <div className={s.left_side}>
         <FilterOfCatalog
