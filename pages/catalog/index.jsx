@@ -4,9 +4,19 @@ import FilterOfCatalog from "@/components/FilterOfCatalog/FilterOfCatalog";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import { Button, Dropdown, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import {useDebounce} from "@/hooks/debounce";
+import {getProducts} from "@/redux/reducers/products";
 const Catalog = ({ }) => {
 
   const dispatch = useDispatch()
+
+  const [name,setName]= useState('')
+
+  // const debounced = useDebounce(name)
+  //
+  // useEffect(() => {
+  //   dispatch(getProducts(debounced))
+  // },[debounced])
 
   const {products} = useSelector(state => state.products)
   
@@ -61,13 +71,12 @@ const Catalog = ({ }) => {
     },
   ];
 
-
-  console.log(filteredProducts);
-
   return (
     <section className={s.Catalog}>
       <div className={s.left_side}>
         <FilterOfCatalog
+            setName={setName}
+            name={name}
           priceRange={priceRange}
           handlePriceChange={handlePriceChange}
           maxPrice={maxPrice}

@@ -12,10 +12,13 @@ const FilterOfCatalog = ({
   handlePriceChange,
   maxPrice,
   formatPrice,
+    name,
+    setName
 }) => {
 
   return (
     <div className={s.FilterOfCatalog}>
+        <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Посик..."/>
       <div className={s.Select}>
         <h3>Раздел</h3>
         <Selection>Гостинные</Selection>

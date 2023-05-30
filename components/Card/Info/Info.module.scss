@@ -55,6 +55,7 @@
       }
 
       &_favourite{
+        cursor: pointer;
         display: flex;
         align-items: center;
         column-gap: 10px;
@@ -215,6 +216,7 @@
     height: 300px;
   }
   .info__right_mid_favourite{
+
     span{
       display: none;
     }
