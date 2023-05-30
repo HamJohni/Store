@@ -5,7 +5,7 @@ export const getProducts = createAsyncThunk(
     'products/getProducts',
     async (name, {rejectedWithValue}) => {
         try {
-           const res = await axios(`http://localhost:4080/products?name_like=${name}`)
+           const res = await axios(`http://localhost:4080/products`)
 
             if (res.statusText !== 'OK') {
                 throw new Error("Произошла ошибка")

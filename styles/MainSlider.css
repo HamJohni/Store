@@ -38,7 +38,7 @@
   .mainSliderSwiper .swiper-button-prev {
     width: 33px !important;
     height: 33px !important;
-    top: 410px;
+    top: 350px;
     left: inherit !important;
     right: 80px !important;
   }
@@ -46,7 +46,7 @@
   .mainSliderSwiper .swiper-button-next {
     width: 33px !important;
     height: 33px !important;
-    top: 410px !important;
+    top: 350px !important;
     margin-right: 15px !important;
   }
 }

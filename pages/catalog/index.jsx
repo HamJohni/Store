@@ -2,50 +2,71 @@ import React, { useState, useEffect } from "react";
 import s from "./Catalog.module.scss";
 import FilterOfCatalog from "@/components/FilterOfCatalog/FilterOfCatalog";
 import ProductCard from "@/components/ProductCard/ProductCard";
-import { Button, Dropdown, Modal } from "antd";
+import { Button, Dropdown, Modal, Select } from "antd";
+// import { products } from "@/contants/Products";
 import { useDispatch, useSelector } from "react-redux";
+
 import {useDebounce} from "@/hooks/debounce";
 import {getProducts} from "@/redux/reducers/products";
 const Catalog = ({ }) => {
 
-  const dispatch = useDispatch()
+const Catalog = () => {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.products);
 
   const [name,setName]= useState('')
 
-  // const debounced = useDebounce(name)
-  //
-  // useEffect(() => {
-  //   dispatch(getProducts(debounced))
-  // },[debounced])
-
-  const {products} = useSelector(state => state.products)
-  
   console.log(products);
   const [filteredProducts, setFilteredProducts] = useState([products]);
-  const [priceRange, setPriceRange] = useState([0, 26990]);
+  const [priceRange, setPriceRange] = useState([0, 300990]);
   const [open, setOpen] = useState(false);
-  // console.log(products);
+  const [sortOrder, setSortOrder] = useState("default");
 
   const handlePriceChange = (value) => {
-    // Фильтрация продуктов по цене
     const filtered = products.filter(
       (product) =>
         parseInt(product.price) >= value[0] &&
         parseInt(product.price) <= value[1]
     );
-    setFilteredProducts(filtered);
+
+    // Сортировка отфильтрованных продуктов
+    const sortedProducts = sortProducts(filtered, sortOrder);
+    setFilteredProducts(sortedProducts);
     setPriceRange(value);
   };
 
-  useEffect(() => {
-    // Нахождение минимальной и максимальной цены
-    const prices = products.map((product) => parseInt(product.price));
-    const maximPrice = Math.max(...prices);
 
-    // Установка начального значения диапазона цен
+  const sortProducts = (products, sortOrder) => {
+    const sorted = [...products];
+
+    if (sortOrder === "asc") {
+      sorted.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+    } else if (sortOrder === "desc") {
+      sorted.sort((a, b) => parseInt(b.price) - parseInt(a.price));
+    }
+    return sorted;
+  };
+
+
+  const handleSortChange = (value) => {
+    if (value === "all") {
+      setFilteredProducts(products); // Show all products
+    } else if (value === "desc") {
+      const sortedProducts = sortProducts(filteredProducts, "desc");
+      setFilteredProducts(sortedProducts); // Sort by descending price
+    } else if (value === "asc") {
+      const sortedProducts = sortProducts(filteredProducts, "asc");
+      setFilteredProducts(sortedProducts); // Sort by ascending price
+    }
+  };
+
+  useEffect(() => {
+    const prices = products.map((product) => parseInt(product.price));
+    const maxPrice = Math.max(...prices);
+
     setPriceRange([0, maxPrice]);
     handlePriceChange([0, maxPrice]);
-  }, []);
+  }, [products]);
 
   const maxPrice = products.reduce((max, product) => {
     const price = product.price;
@@ -70,6 +91,15 @@ const Catalog = ({ }) => {
       label: <p>по популярности</p>,
     },
   ];
+
+  // const handleSortChange = (value) => {
+  //   setSortOrder(value);
+
+  //   // Сортировка отфильтрованных продуктов при изменении значения сортировки
+  //   const sortedProducts = sortProducts(filteredProducts, value);
+  //   setFilteredProducts(sortedProducts);
+  // };
+
 
   return (
     <section className={s.Catalog}>
@@ -108,17 +138,33 @@ const Catalog = ({ }) => {
             />
           </Modal>
           <div className={s.right_side_of_sort}>
-            <h3>Сортировать</h3>
-            <Dropdown
+            <Select
+              placeholder="Сортировать"
               menu={{
                 items,
               }}
+              defaultValue='all'
+              options={[
+                {
+                  value: 'all',
+                  label: 'показать все'
+                },
+                {
+                  value: "desc",
+                  label: "по убыванию цены",
+                },
+                {
+                  value: "asc",
+                  label: "по возрастанию цены",
+                },
+              ]}
               placement="bottomRight"
+              onChange={handleSortChange}
             >
               <Button>
                 <img src="/sortimg.png" alt="sort" />
               </Button>
-            </Dropdown>
+            </Select>
           </div>
         </div>
         <div className={s.Cards}>
@@ -128,15 +174,13 @@ const Catalog = ({ }) => {
             </div>
           ) : (
             filteredProducts.map((product) => (
-              <ProductCard
-                product={product}
-              />
+              <ProductCard product={product} key={product.id} />
             ))
           )}
         </div>
       </div>
     </section>
   );
-};
+}};
 
 export default Catalog;

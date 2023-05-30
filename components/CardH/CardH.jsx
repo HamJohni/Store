@@ -1,4 +1,4 @@
-import h from './Header.module.scss'
+import h from './CardH.module.scss'
 import { BiSearch } from "react-icons/bi";
 import { HiOutlinePhone } from "react-icons/hi";
 import { TbTruckDelivery } from "react-icons/tb";
@@ -6,8 +6,8 @@ import { FiHeart } from "react-icons/fi";
 import { BsBag } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import Link from "next/link";
-import Burger from "@/components/Header/Burger/Burger";
-import {useDispatch, useSelector} from "react-redux";
+import Burger from "@/components/CardH/Burger/Burger";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
     Popover,
@@ -16,45 +16,55 @@ import {
     PopoverHeader,
     PopoverBody,
     PopoverArrow,
-    PopoverCloseButton, Button, useDisclosure,
+    PopoverCloseButton, Button,
 } from '@chakra-ui/react'
 import { useRouter } from "next/router";
-import {useEffect, useRef, useState} from "react";
-import NoAcc from "@/components/NoAcc/NoAcc";
-import {logout} from "@/redux/reducers/user";
-import {useDebounce} from "@/hooks/debounce";
-import {getProducts} from "@/redux/reducers/products";
+import { useEffect, useState } from 'react';
+import { getProducts } from '@/redux/reducers/products';
+import { useDebounce } from '@/hooks/debounce';
 
-const Header = () => {
+const CardH = () => {
 
     const router = useRouter()
+
     const { user } = useSelector(state => state.user)
-    const [name,setName] = useState('')
+
+    const {products} = useSelector(state => state.products)
+
+    
+
+    console.log(products);
+    const [filter, setFilter] = useState('');
+    const debounced = useDebounce(filter)
     const dispatch = useDispatch()
-
-    const debounced = useDebounce(name)
-
     useEffect(() => {
-        dispatch(getProducts(debounced))
-    },[debounced])
+        if (filter !== '') {
+          dispatch(getProducts(debounced));
+        }
+      }, [filter, debounced, dispatch]);    
 
-    useEffect(() => {
-        setName('')
-    },[router])
-
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const cancelRef = useRef()
-
-    let func = {
-        isOpen,
-        onOpen,
-        onClose,
-        cancelRef
-    }
+    
+    // export const getProducts = createAsyncThunk(
+    //     'products/getProducts',
+    //     async (filterName, {rejectedWithValue}) => {
+    //         try {
+    //            const res = await axios(`http://localhost:4080/products?name_like=${filterName}`)
+    
+    //             if (res.statusText !== 'OK') {
+    //                 throw new Error("Произошла ошибка")
+    //             }
+    //             return res.data
+    //         }catch (err){
+    //             console.log(rejectedWithValue(err.message))
+    //         }
+    //     }
+    // )
+    
+    const {pathname} = useRouter()
 
     const logoOut = () => {
         localStorage.removeItem('user')
-        dispatch(logout())
+        return router.push('/regis')
     }
 
     return (
@@ -87,19 +97,26 @@ const Header = () => {
                         </svg>
                     </Link>
 
-                    {/* <ul className={h.header__list}>
+                    <ul className={h.header__list}>
                         <Link href="/" className={h.header__list_item}>Главная</Link>
                         <li className={h.header__list_item}>О нас</li>
                         <li className={h.header__list_item}>Контакты</li>
-                    </ul> */}
-
-                    {/* <label className={h.header__label}>
+                    </ul>
+                    {pathname === '/' ? 
+                    (
+                      <label className={h.header__label}>
                         <span className={h.header__label_icon}>
                             <BiSearch size={20} />
                         </span>
-                        <input type="text" className={h.header__label_input} placeholder="Поиск" />
-                    </label> */}
-                    {/* <ul className={h.header__info}>
+                        <input type="text" className={h.header__label_input}
+                            value={filter}
+                            onChange={(e) => setFilter(e.target.value)}
+                            placeholder="Поиск" />
+                    </label>  
+                    ) : ""
+                }
+                    
+                    <ul className={h.header__info}>
                         <li className={h.header__info_item}>
                             <HiOutlinePhone size={20} />
                             8 (964) 89 99 119
@@ -110,50 +127,46 @@ const Header = () => {
 
                             8 (964) 89 99 119
                         </li>
-                    </ul> */}
+                    </ul>
 
                     <div className={h.header__icons}>
-                        <div className={h.header__icons_notify}  onClick={user? () => router.push('/favorites'): onOpen } >
-                            <NoAcc func={func}/>
-                            <FiHeart size={23}/>
-                        </div>
+                        <Link href="/favorites">
+                            <FiHeart size={23} />
+                        </Link>
 
-                        <div className={h.header__icons_notify} onClick={user? () => router.push('/basket'): onOpen }  >
-                            <NoAcc func={func}/>
+                        <div className={h.header__icons_notify} onClick={() => router.push('/cart')}>
                             <span className={h.header__icons_notify_red}></span>
                             <BsBag size={23} />
                         </div>
 
                         <Popover isLazy>
                             <PopoverTrigger>
-                                <Button variant='link'><FiUser size={23} color="black"/></Button>
+                                <Button variant='link'><FiUser size={23} /></Button>
                             </PopoverTrigger>
 
                             <PopoverContent w="initial" >
-                                <PopoverHeader paddingRight="50px" fontWeight='semibold'>{user ? user?.name : "Вы не авторизованы"}</PopoverHeader>
+                                <PopoverHeader paddingRight="50px" fontWeight='semibold'>{user ? user.name : "Вы не вошли в аккаунт"}</PopoverHeader>
                                 <PopoverArrow />
                                 <PopoverCloseButton />
                                 <PopoverBody>
-                                    {
-                                        user ?
-                                            <Button onClick={() => logoOut()} colorScheme='teal' variant='solid'>
-                                                Log out
-                                            </Button> :
-
-                                            <Button onClick={() => router.push('/register')} colorScheme='teal' variant='solid'>
-                                                Авторизоваться
-                                            </Button>
-                                    }
+                                    <Button onClick={() => logoOut()} colorScheme='teal' variant='solid'>
+                                        Log out
+                                    </Button>
                                 </PopoverBody>
                             </PopoverContent>
                         </Popover>
                     </div>
                 </nav>
-        
+                <label className={h.header__label}>
+                    <span className={h.header__label_icon}>
+                        <BiSearch size={20} />
+                    </span>
+                    <input type="text" className={h.header__label_input} placeholder="Поиск" />
+                </label>
 
             </div>
         </header>
     );
 };
 
-export default Header;
+export default CardH;
