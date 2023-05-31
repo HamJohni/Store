@@ -24,7 +24,7 @@ const Form = () => {
 
     // register ---------------------------------------------------
     const regUser = (data) => {
-        axios.post('http://localhost:4080/register', {...data})
+        axios.post('https://magazine-livid.vercel.app/api/register', {...data})
             .then((res) => {
                 toast({
                     title: 'Акканут создан',
@@ -57,7 +57,7 @@ const Form = () => {
 
     // login ----------------------------------------------------
     const logUser = (data) => {
-        axios.post('http://localhost:4080/login', {...data})
+        axios.post('https://magazine-livid.vercel.app/api/login', {...data})
             .then((res) => {
                 toast({
                     title: 'Вы вошли в аккаунт',

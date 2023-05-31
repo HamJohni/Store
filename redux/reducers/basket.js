@@ -5,7 +5,7 @@ export const getBasket = createAsyncThunk(
     'basket/getBasket',
     async (id, {rejectedWithValue}) => {
         try {
-            const res = await axios(`http://localhost:4080/basket?userId=${id}`)
+            const res = await axios(`https://magazine-livid.vercel.app/api//basket?userId=${id}`)
 
             if (res.statusText !== 'OK') {
                 throw new Error("Произошла ошибка")

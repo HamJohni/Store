@@ -44,8 +44,6 @@ const Index = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
 
-  
-
   useEffect(() => {
     let count = 0;
 

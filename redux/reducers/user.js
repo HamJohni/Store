@@ -5,7 +5,7 @@ export const getUser = createAsyncThunk(
     'user/getUser',
     async(id,{rejectedWithValue}) => {
         try {
-            const res = await axios(`http://localhost:4080/users?id=${id}`)
+            const res = await axios(`https://magazine-livid.vercel.app/api/users?id=${id}`)
 
             if (res.statusText !== 'OK') {
                 throw new Error("Произошла ошибка")
