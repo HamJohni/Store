@@ -18,7 +18,6 @@ const FilterOfCatalog = ({
 
   return (
     <div className={s.FilterOfCatalog}>
-        <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Посик..."/>
       <div className={s.Select}>
         <h3>Раздел</h3>
         <Selection>Гостинные</Selection>
@@ -42,8 +41,6 @@ const FilterOfCatalog = ({
         </div>
       </div>
       <div className={s.color}>
-        <h3>Цвет</h3>
-        <ColorBlocks/>
       </div>
       <div className={s.brand}>
         <h3>Бренд</h3>
