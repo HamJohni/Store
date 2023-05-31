@@ -2,23 +2,19 @@ import React, { useState, useEffect } from "react";
 import s from "./Catalog.module.scss";
 import FilterOfCatalog from "@/components/FilterOfCatalog/FilterOfCatalog";
 import ProductCard from "@/components/ProductCard/ProductCard";
-import { Button, Dropdown, Modal, Select } from "antd";
-// import { products } from "@/contants/Products";
+import { Button, Dropdown, Input, Modal, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
 const Catalog = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
 
-  console.log(products);
-  const [filteredProducts, setFilteredProducts] = useState([products]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 300990]);
   const [open, setOpen] = useState(false);
   const [sortOrder, setSortOrder] = useState("default");
+  const [searchValue, setSearchValue] = useState("");
 
-  \
-
-  
   const handlePriceChange = (value) => {
     const filtered = products.filter(
       (product) =>
@@ -26,14 +22,10 @@ const Catalog = () => {
         parseInt(product.price) <= value[1]
     );
 
-    // Сортировка отфильтрованных продуктов
     const sortedProducts = sortProducts(filtered, sortOrder);
     setFilteredProducts(sortedProducts);
     setPriceRange(value);
   };
-
-
-
 
   const sortProducts = (products, sortOrder) => {
     const sorted = [...products];
@@ -46,20 +38,25 @@ const Catalog = () => {
     return sorted;
   };
 
-
-
-
   const handleSortChange = (value) => {
+    setSortOrder(value);
+
     if (value === "all") {
-      setFilteredProducts(products); // Show all products
+      const sortedProducts = sortProducts(filteredProducts, "default");
+      setFilteredProducts(sortedProducts);
     } else if (value === "desc") {
       const sortedProducts = sortProducts(filteredProducts, "desc");
-      setFilteredProducts(sortedProducts); // Sort by descending price
+      setFilteredProducts(sortedProducts);
     } else if (value === "asc") {
       const sortedProducts = sortProducts(filteredProducts, "asc");
-      setFilteredProducts(sortedProducts); // Sort by ascending price
+      setFilteredProducts(sortedProducts);
     }
   };
+
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
 
   useEffect(() => {
     const prices = products.map((product) => parseInt(product.price));
@@ -93,18 +90,11 @@ const Catalog = () => {
     },
   ];
 
-  // const handleSortChange = (value) => {
-  //   setSortOrder(value);
-
-  //   // Сортировка отфильтрованных продуктов при изменении значения сортировки
-  //   const sortedProducts = sortProducts(filteredProducts, value);
-  //   setFilteredProducts(sortedProducts);
-  // };
-
-  console.log(filteredProducts);
+  const filteredProductsByName = filteredProducts.filter((product) =>
+    product.name.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
   return (
-
     <section className={s.Catalog}>
       <div className={s.left_side}>
         <FilterOfCatalog
@@ -117,6 +107,10 @@ const Catalog = () => {
       </div>
       <div className={s.right_side}>
         <div className={s.sorting}>
+          <div style={{width: '300px' , marginRight: '10px'}}>
+            <Input placeholder="Поиск" onChange={handleSearchChange} size="large" />
+          </div>
+
           <button className={s.filter_button} onClick={() => setOpen(true)}>
             Фильтр
           </button>
@@ -140,15 +134,16 @@ const Catalog = () => {
           </Modal>
           <div className={s.right_side_of_sort}>
             <Select
+            size="large"
               placeholder="Сортировать"
               menu={{
                 items,
               }}
-              defaultValue='all'
+              defaultValue="all"
               options={[
                 {
-                  value: 'all',
-                  label: 'показать все'
+                  value: "all",
+                  label: "показать все",
                 },
                 {
                   value: "desc",
@@ -169,12 +164,12 @@ const Catalog = () => {
           </div>
         </div>
         <div className={s.Cards}>
-          {filteredProducts.length === 0 ? (
+          {filteredProductsByName.length === 0 ? (
             <div className={s.noProducts}>
               <h1>Не найдено товаров по данной цене!</h1>
             </div>
           ) : (
-            filteredProducts.map((product) => (
+            filteredProductsByName.map((product) => (
               <ProductCard product={product} key={product.id} />
             ))
           )}
