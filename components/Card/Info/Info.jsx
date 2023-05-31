@@ -6,7 +6,7 @@ import {BsChevronDown} from "react-icons/bs";
 import {Rating, Star} from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 
@@ -17,20 +17,39 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import {useRouter} from "next/router";
 import axios from "axios";
+import NoAcc from "@/components/NoAcc/NoAcc";
+import {useDisclosure, useToast} from "@chakra-ui/react";
+import {useDispatch, useSelector} from "react-redux";
+import {AiFillHeart, AiOutlineHeart} from "react-icons/ai";
+import {getFavorites} from "@/redux/reducers/favorites";
 
 
 const Info =  () => {
 
     const {query} = useRouter()
 
+    const [check, setCheck] = useState(false)
+    const toast = useToast()
+
+    const { favorites } = useSelector(state => state.favorites)
+
     const [product, setProduct] = useState({})
 
-    useEffect(() => {
-        axios(`http://localhost:4080/products?id=${query.id}`)
+    useEffect( () => {
+         axios(`http://localhost:4080/products?id=${query.id}`)
             .then((res) => {
                 setProduct(res.data[0])
             }).catch((err) => alert(err.message))
     },[])
+
+    setTimeout(() => {
+        favorites.map(item => {
+            if (item.id == query.id) {
+                setCheck(true)
+            }
+        })
+    },200)
+
 
     useEffect(() => {
         axios(`http://localhost:4080/products?id=${query.id}`)
@@ -47,6 +66,98 @@ const Info =  () => {
         itemShapes: Star,
         activeFillColor: '#000000',
         inactiveFillColor: '#D1D1D1'
+    }
+
+// For favorites----------------------------------
+
+    const { user } = useSelector(state => state.user)
+
+    const checkItem = () => {
+        if (check) {
+            setCheck(false)
+            axios.delete(`http://localhost:4080/favorites/${query.id}`)
+                .then((res) => {
+                    toast({
+                        title: 'Продукт успешно удален',
+                        status: 'error',
+                        duration: 5000,
+                        isClosable: true,
+                        position: 'top-left',
+                    })
+                }).catch(() => {
+                toast({
+                    title: 'Продукт удален',
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                    position: 'top-left',
+                })
+
+            })
+        } else {
+            setCheck(true)
+
+            const item = {
+                userId: user?.id,
+                ...product
+            }
+
+            axios.post(`http://localhost:4080/favorites`, item)
+                .then(() => {
+                    toast({
+                        title: 'Продукт добавлен в избранное',
+                        status: 'success',
+                        duration: 5000,
+                        isClosable: true,
+                        position: 'top-left',
+                    })
+                }).catch(() => {
+                toast({
+                    title: "Продукт есть в корзине",
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                    position: 'top-left',
+                })
+            })
+        }
+    }
+
+    // basket --------------------------------------
+
+    const addCard =  async () => {
+        const mob = {
+            userId: user?.id,
+            ...product
+        }
+        axios.post('http://localhost:4080/basket' , mob)
+            .then((res) => {
+                toast({
+                    title: 'Продукт добавлен',
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true,
+                    position: 'top-left',
+                })
+            }).catch((err) => {
+            toast({
+                title: "Товар уже в корзине",
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+                position: 'top-left',
+            })
+        })
+    }
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const cancelRef = useRef()
+
+    let func = {
+        isOpen,
+        onOpen,
+        onClose,
+        cancelRef
     }
 
     return(
@@ -145,10 +256,16 @@ const Info =  () => {
                 <div className={i.info__right_mid}>
                     <p className={i.info__right_mid_price}>{product?.price}₽</p>
 
-                    <button className={i.info__right_mid_btn}>Купить</button>
+                    <button className={i.info__right_mid_btn}  onClick={user ? () => addCard() : onOpen}>
+                        <NoAcc func={func}/>
+                        Купить
+                    </button>
 
-                    <p className={i.info__right_mid_favourite}>
-                        <FiHeart size={20}/>
+                    <p className={i.info__right_mid_favourite} onClick={user? () => checkItem() : onOpen}>
+                        <NoAcc func={func}/>
+                        {
+                            check ? <AiFillHeart fill="red" size={25} /> : <AiOutlineHeart fill="red" size={25} />
+                        }
                         <span>
                            Добавить в желаемое  
                         </span>
@@ -156,6 +273,7 @@ const Info =  () => {
                 </div>
 
                 <div className={i.info__right_categories}>
+
                     <div className={i.info__right_categories_box}>
                         <span className={i.info__right_categories_subtitle}>
                             Цвет

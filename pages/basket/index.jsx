@@ -56,8 +56,6 @@ const Index = () => {
     setTotalCount(count);
   }, [basket]);
 
-//   const [total, settotalPrice] = useState();
-
   return (
     <section className='container'>
       <div className={s.card_section}>

@@ -5,6 +5,9 @@ import ProductCard from "@/components/ProductCard/ProductCard";
 import { Button, Dropdown, Input, Modal, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
+import { useDebounce } from "@/hooks/debounce";
+import { getProducts } from "@/redux/reducers/products";
+
 const Catalog = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
@@ -57,7 +60,6 @@ const Catalog = () => {
     setSearchValue(e.target.value);
   };
 
-
   useEffect(() => {
     const prices = products.map((product) => parseInt(product.price));
     const maxPrice = Math.max(...prices);
@@ -98,6 +100,8 @@ const Catalog = () => {
     <section className={s.Catalog}>
       <div className={s.left_side}>
         <FilterOfCatalog
+          // name={name}
+          // setName={setName}
           priceRange={priceRange}
           handlePriceChange={handlePriceChange}
           maxPrice={maxPrice}
@@ -107,34 +111,39 @@ const Catalog = () => {
       </div>
       <div className={s.right_side}>
         <div className={s.sorting}>
-          <div style={{width: '300px' , marginRight: '10px'}}>
+          <div style={{ width: '300px', marginRight: '10px' }}>
             <Input placeholder="Поиск" onChange={handleSearchChange} size="large" />
           </div>
 
-          <button className={s.filter_button} onClick={() => setOpen(true)}>
-            Фильтр
-          </button>
-          <Modal
-            padding="10px"
-            footer={false}
-            centered
-            open={open}
-            closable={true}
-            onCancel={() => setOpen(false)}
-            width={600}
-            className="modalStyle"
+          <Dropdown
+            overlay={
+              <Modal
+                padding="10px"
+                footer={false}
+                centered
+                open={open}
+                closable={true}
+                onCancel={() => setOpen(false)}
+                width={600}
+                className="modalStyle"
+              >
+                <FilterOfCatalog
+                  priceRange={priceRange}
+                  handlePriceChange={handlePriceChange}
+                  maxPrice={maxPrice}
+                  setPriceRange={setPriceRange}
+                  formatPrice={formatPrice}
+                />
+              </Modal>
+            }
+            trigger={["click"]}
           >
-            <FilterOfCatalog
-              priceRange={priceRange}
-              handlePriceChange={handlePriceChange}
-              maxPrice={maxPrice}
-              setPriceRange={setPriceRange}
-              formatPrice={formatPrice}
-            />
-          </Modal>
+            <Button className={s.filter_button}>Фильтр</Button>
+          </Dropdown>
+          
           <div className={s.right_side_of_sort}>
             <Select
-            size="large"
+              size="large"
               placeholder="Сортировать"
               menu={{
                 items,

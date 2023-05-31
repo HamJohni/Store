@@ -12,6 +12,8 @@ const FilterOfCatalog = ({
   handlePriceChange,
   maxPrice,
   formatPrice,
+    name,
+    setName
 }) => {
 
   return (
@@ -39,8 +41,6 @@ const FilterOfCatalog = ({
         </div>
       </div>
       <div className={s.color}>
-        <h3>Цвет</h3>
-        <ColorBlocks/>
       </div>
       <div className={s.brand}>
         <h3>Бренд</h3>

@@ -7,7 +7,6 @@ import { AiFillHeart } from "react-icons/ai";
 import {useDisclosure, useToast} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import {useEffect, useRef, useState} from "react";
-import {checking} from "@/redux/reducers/favorites";
 import NoAcc from "@/components/NoAcc/NoAcc";
 
 const ProductCard = ({ product, setState }) => {
@@ -20,14 +19,22 @@ const ProductCard = ({ product, setState }) => {
 
 	const { user } = useSelector(state => state.user)
 
-	useEffect(() => {
+
+	setTimeout(() => {
 		favorites.map(item => {
 			if (item.id === product.id) {
 				setCheck(true)
 			}
 		})
-	}, [])
+	},200)
 
+	// useEffect(() => {
+	// 	favorites.map(item => {
+	// 		if (item.id === product.id) {
+	// 			setCheck(true)
+	// 		}
+	// 	})
+	// }, [])
 
 	const checkItem = () => {
 		if (check) {
@@ -37,7 +44,7 @@ const ProductCard = ({ product, setState }) => {
 					setState([])
 					toast({
 						title: 'Продукт успешно удален',
-						status: 'success',
+						status: 'error',
 						duration: 5000,
 						isClosable: true,
 						position: 'top-left',
@@ -54,11 +61,8 @@ const ProductCard = ({ product, setState }) => {
 				})
 		} else {
 
-			localStorage.setItem("favorites", JSON.stringify({
-				...product
-			}))
-
 			setCheck((prev) => !prev)
+
 			const item = {
 				userId: user?.id,
 				...product
@@ -67,7 +71,7 @@ const ProductCard = ({ product, setState }) => {
 			axios.post(`http://localhost:4080/favorites`, item)
 				.then((res) => {
 					toast({
-						title: 'Продукт добавлен в корзину',
+						title: 'Продукт добавлен в избранное',
 						status: 'success',
 						duration: 5000,
 						isClosable: true,
