@@ -16,17 +16,10 @@ const Links = () => {
                 <Link href='/' style={grey}>Главная</Link>
             </BreadcrumbItem>
 
-            <BreadcrumbItem>
-                <Link href='/' style={grey}>Гостинные</Link>
+            <BreadcrumbItem isCurrentPage>
+                <Link href='' style={grey}>Мягкая мебель</Link >
             </BreadcrumbItem>
 
-            <BreadcrumbItem isCurrentPage>
-                <Link href='/' style={grey}>Мягкая мебель</Link>
-            </BreadcrumbItem>
-
-            <BreadcrumbItem isCurrentPage>
-                <Link href='/' style={grey}>Диваны</Link>
-            </BreadcrumbItem>
         </Breadcrumb>
     )
 }

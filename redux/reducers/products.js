@@ -5,7 +5,7 @@ export const getProducts = createAsyncThunk(
     'products/getProducts',
     async (name, {rejectedWithValue}) => {
         try {
-           const res = await axios(`https://magazine-livid.vercel.app/api/products`)
+           const res = await axios(`http://localhost:4080/products`)
 
             if (res.statusText !== 'OK') {
                 throw new Error("Произошла ошибка")

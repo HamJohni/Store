@@ -5,7 +5,7 @@ export const getFavorites = createAsyncThunk(
     'favorites/getFavorites',
     async (id, {rejectedWithValue}) => {
         try {
-            const res = await axios(`https://magazine-livid.vercel.app/api/favorites?userId=${id}`)
+            const res = await axios(`http://localhost:4080/favorites?userId=${id}`)
 
             if (res.statusText !== 'OK') {
                 throw new Error("Произошла ошибка")

@@ -1,5 +1,0 @@
-{
-	"routes": [
-	  { "src": "/api/.*", "dest": "http://localhost:4080/" }
-	]
- }
