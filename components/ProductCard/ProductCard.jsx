@@ -19,13 +19,22 @@ const ProductCard = ({ product, setState }) => {
 
 	const { user } = useSelector(state => state.user)
 
-	useEffect(() => {
+
+	setTimeout(() => {
 		favorites.map(item => {
 			if (item.id === product.id) {
 				setCheck(true)
 			}
 		})
-	}, [])
+	},200)
+
+	// useEffect(() => {
+	// 	favorites.map(item => {
+	// 		if (item.id === product.id) {
+	// 			setCheck(true)
+	// 		}
+	// 	})
+	// }, [])
 
 	const checkItem = () => {
 		if (check) {

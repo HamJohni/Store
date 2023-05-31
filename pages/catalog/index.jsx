@@ -174,6 +174,7 @@ const Catalog = () => {
             </div>
           ) : (
             filteredProducts.map((product) => (
+
               <ProductCard product={product} key={product.id} />
             ))
           )}

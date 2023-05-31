@@ -30,7 +30,6 @@ const Info =  () => {
 
     const [check, setCheck] = useState(false)
     const toast = useToast()
-    const dispatch = useDispatch()
 
     const { favorites } = useSelector(state => state.favorites)
 
@@ -41,13 +40,15 @@ const Info =  () => {
             .then((res) => {
                 setProduct(res.data[0])
             }).catch((err) => alert(err.message))
-
-            favorites?.map(item => {
-                if (item.id === query.id) {
-                    setCheck(true)
-                }
-            })
     },[])
+
+    setTimeout(() => {
+        favorites.map(item => {
+            if (item.id == query.id) {
+                setCheck(true)
+            }
+        })
+    },200)
 
 
     useEffect(() => {
