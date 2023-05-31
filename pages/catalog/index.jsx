@@ -128,17 +128,17 @@ const Catalog = () => {
                 className="modalStyle"
               >
                 <FilterOfCatalog
-                  priceRange={priceRange}
-                  handlePriceChange={handlePriceChange}
-                  maxPrice={maxPrice}
-                  setPriceRange={setPriceRange}
-                  formatPrice={formatPrice}
+                 priceRange={priceRange}
+                 handlePriceChange={handlePriceChange}
+                 maxPrice={maxPrice}
+                 setPriceRange={setPriceRange}
+                 formatPrice={formatPrice}
                 />
               </Modal>
             }
             trigger={["click"]}
           >
-            <Button className={s.filter_button}>Фильтр</Button>
+            <Button className={s.filter_button} onClick={() => setOpen(true)} >Фильтр</Button>
           </Dropdown>
           
           <div className={s.right_side_of_sort}>
